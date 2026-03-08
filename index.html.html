@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Belajar Grammar Salvo Group</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-gradient {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .option-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .option-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .option-card.selected {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .option-card.correct {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border-color: #11998e;
+        }
+        
+        .option-card.wrong {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+            border-color: #eb3349;
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); }
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .menu-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .completed-badge {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        
+        .nav-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+        
+        .theory-box {
+            border-left: 5px solid #667eea;
+            background: linear-gradient(to right, #f8f9ff, #ffffff);
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+        }
+
+        .quiz-slide {
+            min-height: 500px;
+        }
+
+        .question-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .option-label {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            background: #f3f4f6;
+            color: #4b5563;
+            transition: all 0.3s ease;
+        }
+
+        .option-card.selected .option-label,
+        .option-card.correct .option-label,
+        .option-card.wrong .option-label {
+            background: rgba(255,255,255,0.3);
+            color: white;
+        }
+
+        .explanation-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-left: 4px solid #0ea5e9;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Header -->
+    <header class="gradient-bg text-white py-6 px-4 shadow-2xl sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-purple-600 font-bold text-2xl floating">
+                    SG
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold title-font">Panduan Belajar Grammar</h1>
+                    <p class="text-sm opacity-90">Salvo Group English Mastery</p>
+                </div>
+            </div>
+            <button onclick="goToMenu()" class="glass-effect px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-all">
+                🏠 Menu Utama
+            </button>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="w-full bg-gray-200 h-2 fixed top-[88px] z-40">
+        <div id="progressBar" class="progress-bar gradient-bg h-2" style="width: 0%"></div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto p-4 mt-8 mb-20">
+
+        <!-- MENU UTAMA -->
+        <div id="menuSlide" class="slide active">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-bold text-gray-800 mb-4 title-font">Selamat Datang!</h2>
+                <p class="text-xl text-gray-600 mb-8">Pilih level grammar yang ingin Anda pelajari</p>
+                <div class="w-32 h-1 gradient-bg mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dasar (A1-A2) -->
+                <div class="menu-card bg-white rounded-2xl p-6 shadow-lg border-2 border-purple-100 cursor-pointer" onclick="startLevel('basic')">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-2xl flex items-center justify-center text-3xl mb-4 mx-auto">
+                        🌱
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-2 text-gray-800">Level Dasar</h3>
+                    <p class="text-center text-gray-600 mb-4">A1 - A2</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Parts of Speech</li>
+                        <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Simple Tenses</li>
+                        <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Articles</li>
+                        <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Prepositions</li>
+                    </ul>
+                    <div class="text-center">
+                        <span class="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold">4 Materi</span>
+                    </div>
+                </div>
+
+                <!-- Menengah (B1-B2) -->
+                <div class="menu-card bg-white rounded-2xl p-6 shadow-lg border-2 border-purple-100 cursor-pointer" onclick="startLevel('intermediate')">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center text-3xl mb-4 mx-auto">
+                        🚀
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-2 text-gray-800">Level Menengah</h3>
+                    <p class="text-center text-gray-600 mb-4">B1 - B2</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-center gap-2"><span class="text-orange-500">✓</span> Perfect Tenses</li>
+                        <li class="flex items-center gap-2"><span class="text-orange-500">✓</span> Passive Voice</li>
+                        <li class="flex items-center gap-2"><span class="text-orange-500">✓</span> Conditionals</li>
+                        <li class="flex items-center gap-2"><span class="text-orange-500">✓</span> Reported Speech</li>
+                    </ul>
+                    <div class="text-center">
+                        <span class="inline-block px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-semibold">4 Materi</span>
+                    </div>
+                </div>
+
+                <!-- Lanjutan (C1-C2) -->
+                <div class="menu-card bg-white rounded-2xl p-6 shadow-lg border-2 border-purple-100 cursor-pointer" onclick="startLevel('advanced')">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-400 to-pink-600 rounded-2xl flex items-center justify-center text-3xl mb-4 mx-auto">
+                        👑
+                    </div>
+                    <h3 class="text-2xl font-bold text-center mb-2 text-gray-800">Level Lanjutan</h3>
+                    <p class="text-center text-gray-600 mb-4">C1 - C2</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-center gap-2"><span class="text-red-500">✓</span> Subjunctive</li>
+                        <li class="flex items-center gap-2"><span class="text-red-500">✓</span> Inversion</li>
+                        <li class="flex items-center gap-2"><span class="text-red-500">✓</span> Cleft Sentences</li>
+                        <li class="flex items-center gap-2"><span class="text-red-500">✓</span> Emphasis</li>
+                    </ul>
+                    <div class="text-center">
+                        <span class="inline-block px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-semibold">4 Materi</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="mt-12 bg-white rounded-2xl p-6 shadow-lg">
+                <h3 class="text-xl font-bold mb-4 text-center text-gray-800">📊 Progress Belajar Anda</h3>
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div class="p-4 bg-purple-50 rounded-xl">
+                        <p class="text-3xl font-bold text-purple-600" id="completedBasic">0/4</p>
+                        <p class="text-sm text-gray-600">Dasar Selesai</p>
+                    </div>
+                    <div class="p-4 bg-orange-50 rounded-xl">
+                        <p class="text-3xl font-bold text-orange-600" id="completedInter">0/4</p>
+                        <p class="text-sm text-gray-600">Menengah Selesai</p>
+                    </div>
+                    <div class="p-4 bg-red-50 rounded-xl">
+                        <p class="text-3xl font-bold text-red-600" id="completedAdv">0/4</p>
+                        <p class="text-sm text-gray-600">Lanjutan Selesai</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUBMENU LEVEL -->
+        <div id="subMenuSlide" class="slide">
+            <button onclick="goToMenu()" class="mb-6 flex items-center gap-2 text-purple-600 font-semibold hover:gap-4 transition-all">
+                ← Kembali ke Menu
+            </button>
+            
+            <h2 id="levelTitle" class="text-4xl font-bold text-center mb-8 title-font text-gray-800"></h2>
+            
+            <div id="materialsGrid" class="grid md:grid-cols-2 gap-6">
+                <!-- Materials will be inserted here -->
+            </div>
+        </div>
+
+        <!-- MATERI SLIDE -->
+        <div id="materialSlide" class="slide">
+            <button onclick="backToSubMenu()" class="mb-6 flex items-center gap-2 text-purple-600 font-semibold hover:gap-4 transition-all">
+                ← Kembali ke Materi
+            </button>
+
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <!-- Material Header -->
+                <div class="gradient-bg text-white p-8">
+                    <span id="materialLevel" class="inline-block px-4 py-1 bg-white bg-opacity-20 rounded-full text-sm mb-3"></span>
+                    <h2 id="materialTitle" class="text-4xl font-bold title-font mb-2"></h2>
+                    <p id="materialSubtitle" class="text-lg opacity-90"></p>
+                </div>
+
+                <!-- Material Content -->
+                <div class="p-8">
+                    <div id="materialContent" class="prose max-w-none">
+                        <!-- Content will be inserted here -->
+                    </div>
+
+                    <!-- Start Quiz Button -->
+                    <div class="mt-8 text-center">
+                        <button onclick="startQuiz()" class="pulse-glow bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:shadow-2xl transition-all transform hover:scale-105">
+                            🎯 Mulai Latihan Soal (20 Soal)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ SLIDE -->
+        <div id="quizSlide" class="slide quiz-slide">
+            <div class="max-w-4xl mx-auto">
+                <!-- Quiz Header -->
+                <div class="bg-white rounded-2xl p-6 mb-6 shadow-lg flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <div class="question-number" id="questionNumber">1</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Latihan Soal</h3>
+                            <p class="text-gray-600">Soal <span id="currentQuestionNum">1</span> dari 20</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-3xl font-bold text-purple-600"><span id="scoreDisplay">0</span> ✅</p>
+                        <p class="text-sm text-gray-500">Skor Benar</p>
+                    </div>
+                </div>
+
+                <!-- Question Card -->
+                <div class="bg-white rounded-3xl shadow-2xl p-8 mb-6">
+                    <div id="questionText" class="text-xl font-semibold text-gray-800 mb-8 leading-relaxed">
+                        <!-- Question will be inserted here -->
+                    </div>
+
+                    <!-- Options Grid -->
+                    <div id="optionsContainer" class="grid gap-4">
+                        <!-- Options will be inserted here -->
+                    </div>
+
+                    <!-- Feedback Section -->
+                    <div id="feedbackSection" class="mt-6 hidden">
+                        <div class="explanation-box p-6 rounded-xl">
+                            <div class="flex items-start gap-3">
+                                <span id="feedbackIcon" class="text-3xl"></span>
+                                <div>
+                                    <h4 id="feedbackTitle" class="font-bold text-lg mb-2"></h4>
+                                    <p id="feedbackText" class="text-gray-700 mb-2"></p>
+                                    <p id="explanationText" class="text-gray-600 text-sm italic"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="nextQuestion()" class="mt-6 w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all transform hover:scale-[1.02]">
+                            Soal Berikutnya →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Progress -->
+                <div class="bg-white rounded-full h-4 shadow-inner overflow-hidden">
+                    <div id="quizProgress" class="h-full gradient-bg transition-all duration-500" style="width: 5%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT SLIDE -->
+        <div id="resultSlide" class="slide">
+            <div class="max-w-2xl mx-auto text-center">
+                <div class="bg-white rounded-3xl shadow-2xl p-12">
+                    <div class="text-6xl mb-6">🎉</div>
+                    <h2 class="text-4xl font-bold mb-4 title-font text-gray-800">Selamat!</h2>
+                    <p class="text-xl text-gray-600 mb-8">Anda telah menyelesaikan latihan ini</p>
+
+                    <div class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-8 mb-8">
+                        <p class="text-lg text-gray-600 mb-2">Skor Akhir Anda</p>
+                        <p class="text-6xl font-bold text-purple-600 mb-2"><span id="finalScore">0</span>/20</p>
+                        <p id="resultMessage" class="text-lg font-semibold text-gray-700"></p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="retryQuiz()" class="bg-gray-200 text-gray-700 py-4 rounded-xl font-bold hover:bg-gray-300 transition-all">
+                            🔄 Ulangi Latihan
+                        </button>
+                        <button onclick="completeMaterial()" class="gradient-bg text-white py-4 rounded-xl font-bold hover:shadow-lg transition-all">
+                            ✅ Selesai & Kembali
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Data Materi Grammar
+        const grammarData = {
+            basic: {
+                title: "Level Dasar (A1-A2)",
+                materials: [
+                    {
+                        id: "basic1",
+                        title: "Parts of Speech (Kata)",
+                        subtitle: "Mengenal Jenis-jenis Kata dalam Bahasa Inggris",
+                        content: `
+                            <div class="theory-box p-6 rounded-xl mb-6">
+                                <h3 class="text-2xl font-bold mb-4 text-purple-700">📚 Teori: 8 Parts of Speech</h3>
+                                <p class="mb-4 text-gray-700 leading-relaxed">Dalam bahasa Inggris, setiap kata memiliki peran (fungsi) dalam kalimat. Ada 8 jenis kata utama yang harus dikuasai:</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                                <div class="example-box p-4">
+                                    <h4 class="font-bold text-lg mb-2">1. Noun (Kata Benda)</h4>
+                                    <p class="text-sm text-gray-700 mb-2">Nama orang, tempat, benda, atau konsep</p>
+                                    <ul class="text-sm space-y-1 text-gray-600">
+                                        <li>• <strong>People:</strong> teacher, John, mother</li>
+                                        <li>• <strong>Place:</strong> school, Jakarta, park</li>
+                                        <li>• <strong>Thing:</strong> book, car, phone</li>
+                                        <li>• <strong>Concept:</strong> love, happiness, time</li>
+                                    </ul>
+                                </div>
+
+                                <div class="example-box p-4">
+                                    <h4 class="font-bold text-lg mb-2">2. Pronoun (Kata Ganti)</h4>
+                                    <p class="text-sm text-gray-700 mb-2">Menggantikan noun untuk menghindari pengulangan</p>
+                                    <ul class="text-sm space-y-1 text-gray-600">
+                                        <li>• <strong>Subject:</strong> I, you, he, she, it, we, they</li>
+                                        <li>• <strong>Object:</strong> me, you, him, her, it, us, them</li>
+                                        <li>• <strong>Possessive:</strong> my, your, his, her, its, our, their</li>
+                                    </ul>
+                                </div>
+
+                                <div class="example-box p-4">
+                                    <h4 class="font-bold text-lg mb-2">3. Verb (Kata Kerja)</h4>
+                                    <p class="text-sm text-gray-700 mb-2">Menunjukkan aksi atau keadaan</p>
+                                    <ul class="text-sm space-y-1 text-gray-600">
+                                        <li>• <strong>Action:</strong> run, eat, write, think</li>
+                                        <li>• <strong>State:</strong> be (am, is, are), seem, become</li>
+                                        <li>• <strong>Auxiliary:</strong> do, have, will, would</li>
+                                    </ul>
+                                </div>
+
+                                <div class="example-box p-4">
+                                    <h4 class="font-bold text-lg mb-2">4. Adjective (Kata Sifat)</h4>
+                                    <p class="text-sm text-gray-700 mb-2">Menerangkan noun</p>
+                                    <ul class="text-sm space-y-1 text-gray-600">
+                                        <li>• <strong>Quality:</strong> beautiful, smart, tall</li>
+                                        <li>• <strong>Size:</strong> big, small, huge</li>
+                                        <li>• <strong>Color:</strong> red, blue, green</li>
+                                        <li>• <strong>Origin:</strong> Indonesian, American</li>
+                                    </ul>
+                                </div>
+
+                                <div class="example-box p-4">
+                                    <h4 class="font-bold text-lg mb-2">5. Adverb (Kata Keterangan)</h4>
+                                    <p class="text-sm text-gray-700 mb-2">Menerangkan verb, adjective, atau adverb lain</p>
+                                    <ul class="text-sm space-y-1 text-gray-600">
+                                        <li>• <strong>Manner:</strong> quickly, slowly, well</li>
+                                        <li>• <strong>Time:</strong> now, yesterday, soon</li>
+                                        <li>• <strong>Place:</strong> here, there, everywhere</li>
+                                        <li>• <strong>Frequency:</strong> always, never, often</li>
+                                    </ul>
+                                </div>
+
+                                <div class="example-box p-4">
+                                    <h4 class="font-bold text-lg mb-2">6. Preposition (Kata Depan)</h4>
+                                    <p class="text-sm text-gray-700 mb-2">Menunjukkan hubungan antar kata</p>
+                                    <ul class="text-sm space-y-1 text-gray-600">
+                                        <li>• <strong>Place:</strong> in, on, at, under, behind</li>
+                                        <li>• <strong>Time:</strong> at 5 o'clock, on Monday, in 2024</li>
+                                        <li>• <strong>Direction:</strong> to, from, into, through</li>
+                                    </ul>
+                                </div>
+
+                                <div class="example-box p-4">
+                                    <h4 class="font-bold text-lg mb-2">7. Conjunction (Kata Sambung)</h4>
+                                    <p class="text-sm text-gray-700 mb-2">Menghubungkan kata, frasa, atau kalimat</p>
+                                    <ul class="text-sm space-y-1 text-gray-600">
+                                        <li>• <strong>Coordinating:</strong> and, but, or, so, yet</li>
+                                        <li>• <strong>Subordinating:</strong> because, although, if, when</li>
+                                        <li>• <strong>Correlative:</strong> both...and, either...or</li>
+                                    </ul>
+                                </div>
+
+                                <div class="example-box p-4">
+                                    <h4 class="font-bold text-lg mb-2">8. Interjection (Kata Seru)</h4>
+                                    <p class="text-sm text-gray-700 mb-2">Ungkapan emosi (sering dengan tanda seru)</p>
+                                    <ul class="text-sm space-y-1 text-gray-600">
+                                        <li>• Wow! That's amazing!</li>
+                                        <li>• Ouch! That hurts!</li>
+                                        <li>• Hurray! We won!</li>
+                                        <li>• Oh no! I forgot!</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tip-box p-6 mb-6">
+                                <h4 class="font-bold text-lg mb-3 text-gray-800">💡 Tips Mengingat:</h4>
+                                <p class="text-gray-700">Gunakan akronim <strong>"NAVAPPCI"</strong> atau <strong>"VIP CAN DO"</strong> (Verb, Interjection, Pronoun, Conjunction, Adjective, Noun, Determiner, Adverb, Others) untuk mengingat 8 parts of speech!</p>
+                            </div>
+                        `,
+                        questions: [
+                            {q: "Identify the noun: 'The <u>cat</u> sleeps.'", options: ["The", "cat", "sleeps", "none"], correct: 1, explanation: "'Cat' adalah kata benda (noun) yang menyebutkan hewan."},
+                            {q: "Which is a pronoun?", options: ["book", "quickly", "she", "beautiful"], correct: 2, explanation: "'She' adalah pronoun (kata ganti orang ketiga tunggal perempuan)."},
+                            {q: "Find the verb: 'They <u>play</u> football.'", options: ["They", "play", "football", "none"], correct: 1, explanation: "'Play' adalah kata kerja (verb) yang menunjukkan aksi."},
+                            {q: "Which is an adjective?", options: ["run", "happiness", "tall", "yesterday"], correct: 2, explanation: "'Tall' adalah kata sifat (adjective) yang menerangkan ukuran."},
+                            {q: "Identify the adverb: 'She sings <u>beautifully</u>.'", options: ["She", "sings", "beautifully", "none"], correct: 2, explanation: "'Beautifully' adalah adverb (kata keterangan cara) yang menerangkan bagaimana menyanyi."},
+                            {q: "Which is a preposition?", options: ["and", "under", "wow", "quick"], correct: 1, explanation: "'Under' adalah preposition (kata depan) yang menunjukkan posisi."},
+                            {q: "Find the conjunction: 'I like tea <u>but</u> not coffee.'", options: ["I", "like", "but", "not"], correct: 2, explanation: "'But' adalah conjunction (kata sambung) yang menghubungkan dua klausa."},
+                            {q: "Which is an interjection?", options: ["ouch", "run", "the", "quickly"], correct: 0, explanation: "'Ouch' adalah interjection (kata seru) ungkapan rasa sakit."},
+                            {q: "Identify: 'The <u>happy</u> child laughs.' What is 'happy'?", options: ["Noun", "Verb", "Adjective", "Adverb"], correct: 2, explanation: "'Happy' menerangkan noun 'child', jadi itu adalah adjective."},
+                            {q: "Which sentence has a pronoun?", options: ["John eats", "He eats", "Eats quickly", "Quick John"], correct: 1, explanation: "'He' adalah pronoun yang menggantikan nama orang."},
+                            {q: "Find the preposition: 'The book is <u>on</u> the table.'", options: ["The", "book", "is", "on"], correct: 3, explanation: "'On' adalah preposition yang menunjukkan posisi buku di atas meja."},
+                            {q: "What part of speech is 'quickly'?", options: ["Adjective", "Adverb", "Verb", "Noun"], correct: 1, explanation: "'Quickly' adalah adverb (kata keterangan) yang sering diakhiri -ly."},
+                            {q: "Identify: '<u>Wow</u>! That's great!' What is 'wow'?", options: ["Noun", "Verb", "Interjection", "Adjective"], correct: 2, explanation: "'Wow' adalah interjection (kata seru) ungkapan kekaguman."},
+                            {q: "Which is a possessive pronoun?", options: ["I", "my", "me", "mine"], correct: 1, explanation: "'My' adalah possessive adjective (kata ganti kepunyaan)."},
+                            {q: "Find the verb: 'She <u>is</u> a doctor.'", options: ["She", "is", "a", "doctor"], correct: 1, explanation: "'Is' adalah linking verb (to be) yang menghubungkan subject dengan keterangan."},
+                            {q: "What part of speech is 'and'?", options: ["Preposition", "Conjunction", "Adverb", "Pronoun"], correct: 1, explanation: "'And' adalah coordinating conjunction (kata sambung koordinatif)."},
+                            {q: "Identify the adjective: 'A <u>beautiful</u> sunset.'", options: ["A", "beautiful", "sunset", "none"], correct: 1, explanation: "'Beautiful' menerangkan noun 'sunset', jadi itu adjective."},
+                            {q: "Which is NOT a noun?", options: ["table", "run", "London", "happiness"], correct: 1, explanation: "'Run' bisa menjadi verb (lari), bukan noun dalam konteks ini."},
+                            {q: "Find the adverb: 'He speaks <u>softly</u>.'", options: ["He", "speaks", "softly", "none"], correct: 2, explanation: "'Softly' menerangkan bagaimana dia berbicara (cara)."},
+                            {q: "Complete: '___ dog is barking.' (possessive)", options: ["My", "I", "Me", "Mine"], correct: 0, explanation: "'My' adalah possessive adjective yang tepat sebelum noun 'dog'."}
+                        ]
+                    },
+                    {
+                        id: "basic2",
+                        title: "Simple Tenses (Tenses Dasar)",
+                        subtitle: "Present, Past, dan Future Simple",
+                        content: `
+                            <div class="theory-box p-6 rounded-xl mb-6">
+                                <h3 class="text-2xl font-bold mb-4 text-purple-700">📚 Teori: Simple Tenses</h3>
+                                <p class="mb-4 text-gray-700">Simple tenses digunakan untuk menyatakan kebiasaan, fakta, atau kejadian pada waktu tertentu.</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+                                    <h4 class="text-xl font-bold text-blue-700 mb-3">1. Simple Present Tense</h4>
+                                    <p class="text-gray-700 mb-3"><strong>Rumus:</strong> S + V1(s/es) + O</p>
+                                    <p class="text-sm text-gray-600 mb-3">Digunakan untuk: kebiasaan, fakta umum, jadwal tetap</p>
+                                    <div class="bg-white p-4 rounded-xl">
+                                        <p class="font-semibold mb-2">Contoh:</p>
+                                        <ul class="space-y-1 text-gray-700">
+                                            <li>• I <strong>eat</strong> breakfast every morning. (kebiasaan)</li>
+                                            <li>• She <strong>works</strong> at a bank. (fakta)</li>
+                                            <li>• The sun <strong>rises</strong> in the east. (fakta ilmiah)</li>
+                                            <li>• They <strong>don't like</strong> coffee. (negatif)</li>
+                                            <li>• <strong>Does</strong> he <strong>play</strong> tennis? (tanya)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="mt-3 bg-yellow-100 p-3 rounded-lg text-sm">
+                                        <strong>Catatan:</strong> Tambahkan -s/-es untuk subjek he/she/it (3rd person singular)
+                                    </div>
+                                </div>
+
+                                <div class="bg-purple-50 p-6 rounded-2xl border-l-4 border-purple-500">
+                                    <h4 class="text-xl font-bold text-purple-700 mb-3">2. Simple Past Tense</h4>
+                                    <p class="text-gray-700 mb-3"><strong>Rumus:</strong> S + V2 + O</p>
+                                    <p class="text-sm text-gray-600 mb-3">Digunakan untuk: kejadian yang sudah selesai di masa lalu</p>
+                                    <div class="bg-white p-4 rounded-xl">
+                                        <p class="font-semibold mb-2">Contoh:</p>
+                                        <ul class="space-y-1 text-gray-700">
+                                            <li>• I <strong>visited</strong> Bali last year.</li>
+                                            <li>• She <strong>went</strong> to school yesterday.</li>
+                                            <li>• They <strong>didn't watch</strong> TV last night.</li>
+                                            <li>• <strong>Did</strong> you <strong>finish</strong> your homework?</li>
+                                        </ul>
+                                    </div>
+                                    <div class="mt-3 bg-yellow-100 p-3 rounded-lg text-sm">
+                                        <strong>Catatan:</strong> Verb 2 untuk regular verb tambahkan -ed, irregular verb berubah bentuk (go→went, eat→ate)
+                                    </div>
+                                </div>
+
+                                <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500">
+                                    <h4 class="text-xl font-bold text-green-700 mb-3">3. Simple Future Tense</h4>
+                                    <p class="text-gray-700 mb-3"><strong>Rumus:</strong> S + will + V1 + O</p>
+                                    <p class="text-sm text-gray-600 mb-3">Digunakan untuk: rencana spontan, prediksi, janji</p>
+                                    <div class="bg-white p-4 rounded-xl">
+                                        <p class="font-semibold mb-2">Contoh:</p>
+                                        <ul class="space-y-1 text-gray-700">
+                                            <li>• I <strong>will call</strong> you tomorrow.</li>
+                                            <li>• She <strong>will be</strong> here soon.</li>
+                                            <li>• They <strong>won't come</strong> to the party.</li>
+                                            <li>• <strong>Will</strong> you <strong>help</strong> me?</li>
+                                        </ul>
+                                    </div>
+                                    <div class="mt-3 bg-yellow-100 p-3 rounded-lg text-sm">
+                                        <strong>Alternatif:</strong> "Going to" untuk rencana yang sudah dipikirkan sebelumnya: <em>I am going to study medicine.</em>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tip-box p-6 mt-6">
+                                <h4 class="font-bold text-lg mb-3">💡 Time Signals (Penanda Waktu):</h4>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <strong class="text-blue-600">Present:</strong><br>
+                                        every day, always, usually, often, sometimes, never
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <strong class="text-purple-600">Past:</strong><br>
+                                        yesterday, last week, ago, in 2020, just now
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <strong class="text-green-600">Future:</strong><br>
+                                        tomorrow, next week, soon, later, tonight
+                                    </div>
+                                </div>
+                            </div>
+                        `,
+                        questions: [
+                            {q: "She ___ to school every day. (go)", options: ["go", "goes", "went", "going"], correct: 1, explanation: "Subjek 'She' (3rd person singular) membutuhkan verb +es: goes."},
+                            {q: "I ___ breakfast at 7 AM yesterday. (eat)", options: ["eat", "eats", "ate", "eaten"], correct: 2, explanation: "'Yesterday' menunjukkan past tense, gunakan verb 2: ate."},
+                            {q: "They ___ a movie tonight. (watch)", options: ["will watch", "watched", "watching", "watches"], correct: 0, explanation: "'Tonight' menunjukkan future tense, gunakan will + V1."},
+                            {q: "He doesn't ___ coffee.", options: ["drinks", "drink", "drank", "drinking"], correct: 1, explanation: "Setelah auxiliary verb (doesn't), gunakan bare infinitive (V1): drink."},
+                            {q: "___ you finish your homework last night?", options: ["Do", "Does", "Did", "Are"], correct: 2, explanation: "'Last night' menunjukkan past tense, gunakan Did untuk pertanyaan."},
+                            {q: "The sun ___ in the east.", options: ["rise", "rises", "rose", "rising"], correct: 1, explanation: "Fakta ilmiah menggunakan simple present: rises (3rd person singular)."},
+                            {q: "We ___ to Paris next summer.", options: ["will go", "went", "go", "gone"], correct: 0, explanation: "'Next summer' menunjukkan future tense: will go."},
+                            {q: "She ___ at a bank. (work)", options: ["work", "works", "worked", "working"], correct: 1, explanation: "Fakta/kebiasaan menggunakan simple present: works."},
+                            {q: "I ___ TV last night. (not/watch)", options: ["don't watch", "didn't watch", "not watched", "won't watch"], correct: 1, explanation: "'Last night' menunjukkan past tense negatif: didn't watch."},
+                            {q: "___ he play tennis every Sunday?", options: ["Do", "Does", "Did", "Is"], correct: 1, explanation: "'Every Sunday' menunjukkan kebiasaan (present), subjek 'he' gunakan Does."},
+                            {q: "They ___ here tomorrow.", options: ["will be", "were", "are", "been"], correct: 0, explanation: "'Tomorrow' menunjukkan future tense: will be."},
+                            {q: "She ___ to the doctor yesterday.", options: ["go", "goes", "went", "gone"], correct: 2, explanation: "'Yesterday' menunjukkan past tense, go→went (irregular verb)."},
+                            {q: "Water ___ at 100 degrees Celsius.", options: ["boil", "boils", "boiled", "boiling"], correct: 1, explanation: "Fakta ilmiah menggunakan simple present: boils."},
+                            {q: "I promise I ___ help you.", options: ["will", "would", "can", "may"], correct: 0, explanation: "Janji menggunakan future tense dengan will."},
+                            {q: "He usually ___ up at 6 AM.", options: ["wake", "wakes", "woke", "waking"], correct: 1, explanation: "'Usually' menunjukkan kebiasaan, gunakan simple present: wakes."},
+                            {q: "We ___ a great time at the party last night.", options: ["have", "has", "had", "having"], correct: 2, explanation: "'Last night' menunjukkan past tense: had."},
+                            {q: "___ she coming tomorrow?", options: ["Will", "Is", "Does", "Are"], correct: 0, explanation: "'Tomorrow' menunjukkan future tense, gunakan Will untuk pertanyaan."},
+                            {q: "The train ___ at 8 AM every day.", options: ["leave", "leaves", "left", "leaving"], correct: 1, explanation: "Jadwal tetap menggunakan simple present: leaves."},
+                            {q: "I ___ never ___ such a beautiful sunset before.", options: ["have/seen", "had/seen", "did/see", "was/seeing"], correct: 1, explanation: "Ini seharusnya 'I had never seen' (Past Perfect), tapi paling mendekati dalam opsi adalah 'had/seen' untuk pengalaman sebelum masa lalu tertentu."},
+                            {q: "What time ___ the meeting ___ tomorrow?", options: ["will/start", "does/starts", "did/started", "is/starting"], correct: 0, explanation: "'Tomorrow' menunjukkan future tense: will start."}
+                        ]
+                    },
+                    {
+                        id: "basic3",
+                        title: "Articles (Kata Sandang)",
+                        subtitle: "Penggunaan A, An, dan The",
+                        content: `
+                            <div class="theory-box p-6 rounded-xl mb-6">
+                                <h3 class="text-2xl font-bold mb-4 text-purple-700">📚 Teori: Articles</h3>
+                                <p class="mb-4 text-gray-700">Articles adalah kata yang digunakan sebelum noun untuk menunjukkan apakah noun tersebut spesifik atau umum.</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+                                    <h4 class="text-xl font-bold text-blue-700 mb-3">Indefinite Articles: A / An</h4>
+                                    <p class="text-gray-700 mb-3">Digunakan untuk noun tunggal yang umum (belum spesifik).</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl mb-4">
+                                        <p class="font-bold text-blue-600 mb-2">A + consonant sound</p>
+                                        <ul class="space-y-1 text-gray-700">
+                                            <li>• a book, a cat, a university (bunyinya 'yu'), a European</li>
+                                            <li>• I have <strong>a</strong> car.</li>
+                                            <li>• She is <strong>a</strong> doctor.</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="bg-white p-4 rounded-xl">
+                                        <p class="font-bold text-blue-600 mb-2">An + vowel sound (a, e, i, o, u)</p>
+                                        <ul class="space-y-1 text-gray-700">
+                                            <li>• an apple, an egg, an hour (bunyinya 'au'), an honest man</li>
+                                            <li>• I ate <strong>an</strong> orange.</li>
+                                            <li>• He is <strong>an</strong> engineer.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="bg-purple-50 p-6 rounded-2xl border-l-4 border-purple-500">
+                                    <h4 class="text-xl font-bold text-purple-700 mb-3">Definite Article: The</h4>
+                                    <p class="text-gray-700 mb-3">Digunakan untuk noun yang spesifik (sudah diketahui atau unik).</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl">
+                                        <p class="font-bold text-purple-600 mb-2">Kapan menggunakan The:</p>
+                                        <ul class="space-y-2 text-gray-700">
+                                            <li>• <strong>Spesifik:</strong> The book on the table is mine.</li>
+                                            <li>• <strong>Unik:</strong> The sun, the moon, the earth, the president</li>
+                                            <li>• <strong>Superlative:</strong> The tallest building, the best student</li>
+                                            <li>• <strong>Ordinal:</strong> The first time, the second chapter</li>
+                                            <li>• <strong>Geografi:</strong> The Pacific Ocean, the Alps, the Philippines</li>
+                                            <li>• <strong>Kelompok:</strong> The rich, the elderly, the Smiths (keluarga)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="bg-red-50 p-6 rounded-2xl border-l-4 border-red-500">
+                                    <h4 class="text-xl font-bold text-red-700 mb-3">No Article (Zero Article)</h4>
+                                    <p class="text-gray-700 mb-3">Beberapa noun tidak membutuhkan article.</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl">
+                                        <ul class="space-y-2 text-gray-700">
+                                            <li>• <strong>Nama orang:</strong> John, Mrs. Smith (tapi: the Smiths = keluarga Smith)</li>
+                                            <li>• <strong>Nama kota/negara:</strong> Jakarta, Japan (tapi: the United States)</li>
+                                            <li>• <strong>Bahasa:</strong> English, Indonesian</li>
+                                            <li>• <strong>Makanan umum:</strong> I like rice. (bukan: the rice)</li>
+                                            <li>• <strong>Olahraga:</strong> He plays football.</li>
+                                            <li>• <strong>Abstrak umum:</strong> Love is blind. Time flies.</li>
+                                            <li>• <strong>Transportasi umum:</strong> by car, by bus (tapi: in the car)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tip-box p-6 mt-6">
+                                <h4 class="font-bold text-lg mb-3">💡 Perbedaan A/An dan The:</h4>
+                                <div class="bg-white p-4 rounded-xl">
+                                    <p class="mb-2"><strong>Pertama kali:</strong> I saw <u>a</u> dog. (anjing mana saja)</p>
+                                    <p><strong>Sudah disebutkan:</strong> <u>The</u> dog was brown. (anjing spesifik yang tadi)</p>
+                                </div>
+                            </div>
+                        `,
+                        questions: [
+                            {q: "I have ___ idea.", options: ["a", "an", "the", "-"], correct: 1, explanation: "'Idea' diawali dengan bunyi vokal 'ai', gunakan an."},
+                            {q: "She is ___ honest woman.", options: ["a", "an", "the", "-"], correct: 1, explanation: "'Honest' diawali dengan bunyi vokal 'o' (silent h), gunakan an."},
+                            {q: "___ sun rises in the east.", options: ["A", "An", "The", "-"], correct: 2, explanation: "Matahari adalah benda unik, gunakan the."},
+                            {q: "I bought ___ umbrella.", options: ["a", "an", "the", "-"], correct: 1, explanation: "'Umbrella' diawali dengan bunyi vokal 'u', gunakan an."},
+                            {q: "He plays ___ basketball every day.", options: ["a", "an", "the", "-"], correct: 3, explanation: "Nama olahraga tidak menggunakan article."},
+                            {q: "___ book on the table is mine.", options: ["A", "An", "The", "-"], correct: 2, explanation: "Buku sudah spesifik (di atas meja), gunakan the."},
+                            {q: "She is ___ university student.", options: ["a", "an", "the", "-"], correct: 0, explanation: "'University' diawali dengan bunyi konsonan 'yu', gunakan a."},
+                            {q: "I love ___ music.", options: ["a", "an", "the", "-"], correct: 3, explanation: "Abstrak umum (music) tidak menggunakan article."},
+                            {q: "___ Pacific Ocean is the largest ocean.", options: ["A", "An", "The", "-"], correct: 2, explanation: "Nama samudra menggunakan the."},
+                            {q: "He is ___ best player in the team.", options: ["a", "an", "the", "-"], correct: 2, explanation: "Superlative (best) selalu menggunakan the."},
+                            {q: "I saw ___ elephant at the zoo.", options: ["a", "an", "the", "-"], correct: 1, explanation: "'Elephant' diawali dengan bunyi vokal 'e', gunakan an."},
+                            {q: "___ rich should help the poor.", options: ["A", "An", "The", "-"], correct: 2, explanation: "The + adjective untuk menyebut kelompok orang: the rich."},
+                            {q: "She lives in ___ United States.", options: ["a", "an", "the", "-"], correct: 2, explanation: "Nama negara majemuk menggunakan the."},
+                            {q: "I ate ___ apple for breakfast.", options: ["a", "an", "the", "-"], correct: 1, explanation: "'Apple' diawali dengan bunyi vokal, gunakan an."},
+                            {q: "___ Earth revolves around the sun.", options: ["A", "An", "The", "-"], correct: 2, explanation: "Planet Bumi adalah unik, gunakan the."},
+                            {q: "He goes to ___ school by bus.", options: ["a", "an", "the", "-"], correct: 3, explanation: "Go to school (sekolah umum), by bus (transportasi umum) tanpa the."},
+                            {q: "This is ___ first time I've been here.", options: ["a", "an", "the", "-"], correct: 2, explanation: "Ordinal number (first) menggunakan the."},
+                            {q: "I need ___ advice.", options: ["a", "an", "the", "-"], correct: 3, explanation: "Advice adalah uncountable noun, tidak menggunakan a/an."},
+                            {q: "___ French is a beautiful language.", options: ["A", "An", "The", "-"], correct: 3, explanation: "Nama bahasa tidak menggunakan article."},
+                            {q: "She is ___ one-eyed pirate.", options: ["a", "an", "the", "-"], correct: 0, explanation: "'One-eyed' diawali dengan bunyi konsonan 'w' (wun), gunakan a."}
+                        ]
+                    },
+                    {
+                        id: "basic4",
+                        title: "Prepositions (Kata Depan)",
+                        subtitle: "In, On, At, dan Lainnya",
+                        content: `
+                            <div class="theory-box p-6 rounded-xl mb-6">
+                                <h3 class="text-2xl font-bold mb-4 text-purple-700">📚 Teori: Prepositions</h3>
+                                <p class="mb-4 text-gray-700">Prepositions adalah kata yang menunjukkan hubungan antara noun/pronoun dengan kata lain dalam kalimat (waktu, tempat, arah, dll).</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+                                    <h4 class="text-xl font-bold text-blue-700 mb-3">Prepositions of Time (Waktu)</h4>
+                                    <div class="grid md:grid-cols-3 gap-4">
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="font-bold text-blue-600 mb-2">AT (titik waktu)</p>
+                                            <ul class="text-sm space-y-1 text-gray-700">
+                                                <li>• at 5 o'clock</li>
+                                                <li>• at noon, at midnight</li>
+                                                <li>• at night</li>
+                                                <li>• at Christmas</li>
+                                                <li>• at the moment</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="font-bold text-blue-600 mb-2">ON (hari/tanggal)</p>
+                                            <ul class="text-sm space-y-1 text-gray-700">
+                                                <li>• on Monday</li>
+                                                <li>• on June 15th</li>
+                                                <li>• on my birthday</li>
+                                                <li>• on Christmas Day</li>
+                                                <li>• on the weekend (US)</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="font-bold text-blue-600 mb-2">IN (periode panjang)</p>
+                                            <ul class="text-sm space-y-1 text-gray-700">
+                                                <li>• in the morning</li>
+                                                <li>• in July, in 2024</li>
+                                                <li>• in summer</li>
+                                                <li>• in the 21st century</li>
+                                                <li>• in an hour</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-purple-50 p-6 rounded-2xl border-l-4 border-purple-500">
+                                    <h4 class="text-xl font-bold text-purple-700 mb-3">Prepositions of Place (Tempat)</h4>
+                                    <div class="grid md:grid-cols-3 gap-4">
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="font-bold text-purple-600 mb-2">AT (titik spesifik)</p>
+                                            <ul class="text-sm space-y-1 text-gray-700">
+                                                <li>• at the door</li>
+                                                <li>• at the bus stop</li>
+                                                <li>• at home, at work</li>
+                                                <li>• at school, at university</li>
+                                                <li>• at the top/bottom</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="font-bold text-purple-600 mb-2">ON (permukaan)</p>
+                                            <ul class="text-sm space-y-1 text-gray-700">
+                                                <li>• on the table</li>
+                                                <li>• on the wall</li>
+                                                <li>• on the floor</li>
+                                                <li>• on the bus/train/plane</li>
+                                                <li>• on the left/right</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="font-bold text-purple-600 mb-2">IN (di dalam/area)</p>
+                                            <ul class="text-sm space-y-1 text-gray-700">
+                                                <li>• in the room</li>
+                                                <li>• in Jakarta</li>
+                                                <li>• in Indonesia</li>
+                                                <li>• in the car/taxi</li>
+                                                <li>• in the picture</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500">
+                                    <h4 class="text-xl font-bold text-green-700 mb-3">Other Important Prepositions</h4>
+                                    <div class="grid md:grid-cols-2 gap-4">
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="font-bold text-green-600 mb-2">Direction (Arah)</p>
+                                            <ul class="text-sm space-y-1 text-gray-700">
+                                                <li>• to: go to school</li>
+                                                <li>• into: go into the room</li>
+                                                <li>• towards: walk towards me</li>
+                                                <li>• through: go through the tunnel</li>
+                                                <li>• across: swim across the river</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="font-bold text-green-600 mb-2">Other Relationships</p>
+                                            <ul class="text-sm space-y-1 text-gray-700">
+                                                <li>• for: for you, for 2 hours</li>
+                                                <li>• with: with me, with a knife</li>
+                                                <li>• by: by car, written by</li>
+                                                <li>• about: talk about</li>
+                                                <li>• of: a cup of tea</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tip-box p-6 mt-6">
+                                <h4 class="font-bold text-lg mb-3">💡 Perbedaan Penting:</h4>
+                                <div class="bg-white p-4 rounded-xl space-y-2">
+                                    <p><strong>AT</strong> the party (acara) vs <strong>IN</strong> the party (fisik di dalam)? → Gunakan AT untuk acara!</p>
+                                    <p><strong>IN</strong> the car (di dalam mobil) vs <strong>ON</strong> the bus (di atas/badan bus)</p>
+                                    <p><strong>AT</strong> school (institusi) vs <strong>IN</strong> the school (gedung)</p>
+                                </div>
+                            </div>
+                        `,
+                        questions: [
+                            {q: "I wake up ___ 6 o'clock every morning.", options: ["at", "on", "in", "by"], correct: 0, explanation: "Jam spesifik menggunakan at."},
+                            {q: "We have a meeting ___ Monday.", options: ["at", "on", "in", "by"], correct: 1, explanation: "Hari menggunakan on."},
+                            {q: "She was born ___ 1995.", options: ["at", "on", "in", "by"], correct: 2, explanation: "Tahun menggunakan in."},
+                            {q: "The book is ___ the table.", options: ["at", "on", "in", "by"], correct: 1, explanation: "Benda di permukaan menggunakan on."},
+                            {q: "I live ___ Jakarta.", options: ["at", "on", "in", "by"], correct: 2, explanation: "Kota besar menggunakan in."},
+                            {q: "He is waiting ___ the bus stop.", options: ["at", "on", "in", "by"], correct: 0, explanation: "Titik spesifik menggunakan at."},
+                            {q: "I prefer to study ___ the morning.", options: ["at", "on", "in", "by"], correct: 2, explanation: "Bagian hari (morning, afternoon, evening) menggunakan in."},
+                            {q: "She is ___ home now.", options: ["at", "on", "in", "by"], correct: 0, explanation: "At home adalah ungkapan tetap."},
+                            {q: "We traveled ___ plane to Bali.", options: ["at", "on", "in", "by"], correct: 3, explanation: "Moda transportasi menggunakan by."},
+                            {q: "The picture is ___ the wall.", options: ["at", "on", "in", "by"], correct: 1, explanation: "Benda menempel di permukaan vertikal menggunakan on."},
+                            {q: "I will see you ___ Christmas Day.", options: ["at", "on", "in", "by"], correct: 1, explanation: "Hari spesifik (Christmas Day) menggunakan on."},
+                            {q: "He is ___ work right now.", options: ["at", "on", "in", "by"], correct: 0, explanation: "At work adalah ungkapan tetap."},
+                            {q: "The cat is hiding ___ the bed.", options: ["at", "on", "in", "under"], correct: 3, explanation: "Posisi di bawah menggunakan under (pilihan yang tersedia)."},
+                            {q: "I have been waiting ___ 2 hours.", options: ["at", "on", "in", "for"], correct: 3, explanation: "Durasi waktu menggunakan for."},
+                            {q: "She walked ___ the park to get home.", options: ["at", "on", "in", "through"], correct: 3, explanation: "Berjalan melewati/melalui menggunakan through."},
+                            {q: "The restaurant is ___ the left.", options: ["at", "on", "in", "by"], correct: 1, explanation: "Posisi kiri/kanan menggunakan on."},
+                            {q: "I prefer to sit ___ the window.", options: ["at", "on", "in", "by"], correct: 3, explanation: "Di samping/dekat menggunakan by."},
+                            {q: "We arrived ___ the airport early.", options: ["at", "on", "in", "by"], correct: 0, explanation: "Titik spesifik menggunakan at."},
+                            {q: "The meeting is ___ noon.", options: ["at", "on", "in", "by"], correct: 0, explanation: "Noon (tengah hari) menggunakan at."},
+                            {q: "She is interested ___ learning English.", options: ["at", "on", "in", "by"], correct: 2, explanation: "Interested in adalah ungkapan tetap (preposition collocation)."}
+                        ]
+                    }
+                ]
+            },
+            intermediate: {
+                title: "Level Menengah (B1-B2)",
+                materials: [
+                    {
+                        id: "inter1",
+                        title: "Perfect Tenses",
+                        subtitle: "Present Perfect, Past Perfect, Future Perfect",
+                        content: `
+                            <div class="theory-box p-6 rounded-xl mb-6">
+                                <h3 class="text-2xl font-bold mb-4 text-purple-700">📚 Teori: Perfect Tenses</h3>
+                                <p class="mb-4 text-gray-700">Perfect tenses digunakan untuk menyatakan aksi yang sudah selesai pada waktu tertentu atau memiliki koneksi dengan waktu lain.</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+                                    <h4 class="text-xl font-bold text-blue-700 mb-3">1. Present Perfect Tense</h4>
+                                    <p class="text-gray-700 mb-3"><strong>Rumus:</strong> S + have/has + V3 + O</p>
+                                    <p class="text-sm text-gray-600 mb-3">Digunakan untuk: pengalaman hidup, aksi yang dimulai di masa lalu dan berlanjut sampai sekarang, hasil sekarang</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl mb-3">
+                                        <p class="font-semibold mb-2">Contoh:</p>
+                                        <ul class="space-y-1 text-gray-700">
+                                            <li>• I <strong>have visited</strong> Paris twice. (pengalaman)</li>
+                                            <li>• She <strong>has lived</strong> here since 2010. (masih tinggal)</li>
+                                            <li>• They <strong>have just finished</strong> their work. (baru selesai)</li>
+                                            <li>• I <strong>have lost</strong> my keys. (hasil sekarang: tidak punya kunci)</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-yellow-100 p-3 rounded-lg text-sm">
+                                        <strong>Time markers:</strong> ever, never, just, already, yet, since, for, recently, lately
+                                    </div>
+                                </div>
+
+                                <div class="bg-purple-50 p-6 rounded-2xl border-l-4 border-purple-500">
+                                    <h4 class="text-xl font-bold text-purple-700 mb-3">2. Past Perfect Tense</h4>
+                                    <p class="text-gray-700 mb-3"><strong>Rumus:</strong> S + had + V3 + O</p>
+                                    <p class="text-sm text-gray-600 mb-3">Digunakan untuk: aksi yang selesai sebelum aksi lain di masa lalu (the past of the past)</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl mb-3">
+                                        <p class="font-semibold mb-2">Contoh:</p>
+                                        <ul class="space-y-1 text-gray-700">
+                                            <li>• When I arrived, the train <strong>had already left</strong>.</li>
+                                            <li>• She <strong>had finished</strong> her homework before dinner.</li>
+                                            <li>• I realized I <strong>had forgotten</strong> my wallet.</li>
+                                            <li>• They <strong>had never seen</strong> snow before that day.</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-yellow-100 p-3 rounded-lg text-sm">
+                                        <strong>Struktur:</strong> Past Perfect (aksi pertama) → Simple Past (aksi kedua)
+                                    </div>
+                                </div>
+
+                                <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500">
+                                    <h4 class="text-xl font-bold text-green-700 mb-3">3. Future Perfect Tense</h4>
+                                    <p class="text-gray-700 mb-3"><strong>Rumus:</strong> S + will have + V3 + O</p>
+                                    <p class="text-sm text-gray-600 mb-3">Digunakan untuk: aksi yang akan selesai pada waktu tertentu di masa depan</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl mb-3">
+                                        <p class="font-semibold mb-2">Contoh:</p>
+                                        <ul class="space-y-1 text-gray-700">
+                                            <li>• By next year, I <strong>will have graduated</strong>.</li>
+                                            <li>• She <strong>will have finished</strong> the report by 5 PM.</li>
+                                            <li>• They <strong>will have been married</strong> for 10 years tomorrow.</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-yellow-100 p-3 rounded-lg text-sm">
+                                        <strong>Time markers:</strong> by, by the time, before, until/till
+                                    </div>
+                                </div>
+
+                                <div class="bg-orange-50 p-6 rounded-2xl border-l-4 border-orange-500">
+                                    <h4 class="text-xl font-bold text-orange-700 mb-3">4. Perfect Continuous (Bonus)</h4>
+                                    <p class="text-gray-700 mb-3">Menekankan durasi/keberlanjutan aksi:</p>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li>• <strong>Present Perfect Continuous:</strong> I have been studying for 3 hours. (masih belajar)</li>
+                                        <li>• <strong>Past Perfect Continuous:</strong> She had been waiting for an hour when I arrived.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tip-box p-6 mt-6">
+                                <h4 class="font-bold text-lg mb-3">💡 Perbedaan Kunci:</h4>
+                                <div class="bg-white p-4 rounded-xl space-y-2">
+                                    <p><strong>Simple Past vs Present Perfect:</strong></p>
+                                    <p>• I <u>lost</u> my key yesterday. (waktu spesifik, sudah selesai)</p>
+                                    <p>• I <u>have lost</u> my key. (tidak tahu kapan, relevan sekarang)</p>
+                                </div>
+                            </div>
+                        `,
+                        questions: [
+                            {q: "I ___ never ___ to Japan. (be)", options: ["have/been", "had/been", "was/been", "am/being"], correct: 0, explanation: "Present perfect untuk pengalaman hidup: have never been."},
+                            {q: "She ___ finished her homework. (already)", options: ["is", "has", "had", "will"], correct: 1, explanation: "Already digunakan dengan present perfect: has finished."},
+                            {q: "When I arrived, the movie ___. (start)", options: ["started", "has started", "had started", "will start"], correct: 2, explanation: "Aksi sebelum aksi lain di masa lalu menggunakan past perfect: had started."},
+                            {q: "By next year, I ___ my degree. (complete)", options: ["complete", "completed", "have completed", "will have completed"], correct: 3, explanation: "By next year menunjukkan future perfect: will have completed."},
+                            {q: "They ___ in Jakarta since 2015. (live)", options: ["live", "lived", "have lived", "had lived"], correct: 2, explanation: "Since 2015 menunjukkan present perfect: have lived (masih tinggal)."},
+                            {q: "I realized I ___ my keys at home. (leave)", options: ["left", "have left", "had left", "was leaving"], correct: 2, explanation: "Aksi sebelum realize (past) menggunakan past perfect: had left."},
+                            {q: "___ you ever ___ sushi? (eat)", options: ["Do/eat", "Did/eat", "Have/eaten", "Had/eaten"], correct: 2, explanation: "Ever digunakan dengan present perfect: Have you ever eaten."},
+                            {q: "She ___ just ___ out. (go)", options: ["is/going", "has/gone", "had/gone", "went"], correct: 1, explanation: "Just digunakan dengan present perfect: has gone."},
+                            {q: "Before the meeting started, everyone ___. (arrive)", options: ["arrived", "has arrived", "had arrived", "arrives"], correct: 2, explanation: "Sebelum started (past) menggunakan past perfect: had arrived."},
+                            {q: "By 2025, we ___ this project. (finish)", options: ["finish", "finished", "have finished", "will have finished"], correct: 3, explanation: "By 2025 menunjukkan future perfect: will have finished."},
+                            {q: "I ___ the book yet. (not/read)", options: ["don't read", "didn't read", "haven't read", "hadn't read"], correct: 2, explanation: "Yet digunakan dengan present perfect negatif: haven't read."},
+                            {q: "He ___ for 2 hours when I called. (study)", options: ["studied", "has studied", "had been studying", "was studying"], correct: 2, explanation: "Durasi sebelum called (past) menggunakan past perfect continuous: had been studying."},
+                            {q: "___ she called, I had already left.", options: ["When", "Before", "After", "Until"], correct: 0, explanation: "When digunakan untuk menyatakan 'ketika' dengan past perfect."},
+                            {q: "We ___ three countries this year. (visit)", options: ["visited", "have visited", "had visited", "will visit"], correct: 1, explanation: "This year (belum selesai) menggunakan present perfect: have visited."},
+                            {q: "The train ___ before we reached the station.", options: ["left", "has left", "had left", "leaves"], correct: 2, explanation: "Sebelum reached (past) menggunakan past perfect: had left."},
+                            {q: "I ___ English for 5 years. (learn)", options: ["learn", "learned", "have been learning", "had learned"], correct: 2, explanation: "For 5 years menekankan durasi sampai sekarang: have been learning."},
+                            {q: "By the time you arrive, I ___ dinner. (prepare)", options: ["prepare", "prepared", "have prepared", "will have prepared"], correct: 3, explanation: "By the time + future menggunakan future perfect: will have prepared."},
+                            {q: "She ___ the letter before I could stop her. (send)", options: ["sends", "sent", "has sent", "had sent"], correct: 3, explanation: "Sebelum could stop (past) menggunakan past perfect: had sent."},
+                            {q: "___ you finished your homework yet?", options: ["Do", "Did", "Have", "Had"], correct: 2, explanation: "Yet digunakan dengan present perfect: Have you finished."},
+                            {q: "Next month, they ___ married for 25 years.", options: ["are", "were", "have been", "will have been"], correct: 3, explanation: "Next month dengan durasi menggunakan future perfect: will have been."}
+                        ]
+                    },
+                    {
+                        id: "inter2",
+                        title: "Passive Voice",
+                        subtitle: "Kalimat Pasif dalam Berbagai Tenses",
+                        content: `
+                            <div class="theory-box p-6 rounded-xl mb-6">
+                                <h3 class="text-2xl font-bold mb-4 text-purple-700">📚 Teori: Passive Voice</h3>
+                                <p class="mb-4 text-gray-700">Passive voice digunakan ketika fokus pada objek (penerima aksi) daripada subjek (pelaku aksi). Subjek sering tidak disebutkan atau menggunakan 'by'.</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+                                    <h4 class="text-xl font-bold text-blue-700 mb-3">Rumus Dasar Passive Voice</h4>
+                                    <div class="bg-white p-4 rounded-xl mb-4">
+                                        <p class="text-center text-lg font-semibold text-gray-800 mb-4">S + to be + V3 (Past Participle) + (by O)</p>
+                                        <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                            <div>
+                                                <p class="font-bold mb-2">Active:</p>
+                                                <p>• Tom writes a letter.</p>
+                                                <p>• Someone stole my bike.</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold mb-2">Passive:</p>
+                                                <p>• A letter is written (by Tom).</p>
+                                                <p>• My bike was stolen.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-purple-50 p-6 rounded-2xl border-l-4 border-purple-500">
+                                    <h4 class="text-xl font-bold text-purple-700 mb-3">Passive Voice dalam Berbagai Tenses</h4>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded-lg">
+                                            <p class="font-semibold text-purple-600">Simple Present: S + am/is/are + V3</p>
+                                            <p class="text-sm text-gray-600">English is spoken here.</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-lg">
+                                            <p class="font-semibold text-purple-600">Simple Past: S + was/were + V3</p>
+                                            <p class="text-sm text-gray-600">The cake was eaten.</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-lg">
+                                            <p class="font-semibold text-purple-600">Present Perfect: S + have/has been + V3</p>
+                                            <p class="text-sm text-gray-600">The work has been done.</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-lg">
+                                            <p class="font-semibold text-purple-600">Future: S + will be + V3</p>
+                                            <p class="text-sm text-gray-600">The letter will be sent tomorrow.</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-lg">
+                                            <p class="font-semibold text-purple-600">Modal: S + modal + be + V3</p>
+                                            <p class="text-sm text-gray-600">It can be done. / It must be finished.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500">
+                                    <h4 class="text-xl font-bold text-green-700 mb-3">Kapan Menggunakan Passive?</h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li>• <strong>Fokus pada objek:</strong> The window was broken. (siapa yang memecahkan tidak penting)</li>
+                                        <li>• <strong>Pelaku tidak diketahui:</strong> My phone was stolen.</li>
+                                        <li>• <strong>Penulisan ilmiah/formal:</strong> The experiment was conducted...</li>
+                                        <li>• <strong>Berita:</strong> Three people were arrested.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-orange-50 p-6 rounded-2xl border-l-4 border-orange-500">
+                                    <h4 class="text-xl font-bold text-orange-700 mb-3">Verbs dengan Two Objects</h4>
+                                    <p class="text-gray-700 mb-3">Beberapa verb bisa membuat dua bentuk pasif:</p>
+                                    <div class="bg-white p-4 rounded-xl">
+                                        <p class="mb-2"><strong>Active:</strong> John gave Mary a book.</p>
+                                        <p class="mb-2"><strong>Passive 1:</strong> Mary was given a book (by John).</p>
+                                        <p><strong>Passive 2:</strong> A book was given to Mary (by John).</p>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-2">Verbs: give, send, show, tell, offer, teach, etc.</p>
+                                </div>
+                            </div>
+
+                            <div class="tip-box p-6 mt-6">
+                                <h4 class="font-bold text-lg mb-3">💡 Perhatian:</h4>
+                                <div class="bg-white p-4 rounded-xl space-y-2">
+                                    <p>• Intransitive verbs (tidak memiliki objek) <strong>tidak bisa</strong> dipasifkan: happen, sleep, arrive, die</p>
+                                    <p>• <strong>Get + V3</strong> (informal): I got invited to the party. = I was invited...</p>
+                                </div>
+                            </div>
+                        `,
+                        questions: [
+                            {q: "The letter ___ by Tom yesterday. (write)", options: ["is written", "was written", "has been written", "will be written"], correct: 1, explanation: "Yesterday menunjukkan simple past passive: was written."},
+                            {q: "English ___ all over the world. (speak)", options: ["is spoken", "was spoken", "has spoken", "speaks"], correct: 0, explanation: "Fakta umum menggunakan simple present passive: is spoken."},
+                            {q: "The cake ___ by the children. (eat)", options: ["is eaten", "was eaten", "has been eaten", "had been eaten"], correct: 1, explanation: "Aksi selesai di masa lalu menggunakan simple past passive: was eaten."},
+                            {q: "My bike ___ last night. (steal)", options: ["is stolen", "was stolen", "has stolen", "stole"], correct: 1, explanation: "Last night menunjukkan simple past passive: was stolen."},
+                            {q: "The work ___ by tomorrow. (finish)", options: ["is finished", "was finished", "will be finished", "has finished"], correct: 2, explanation: "By tomorrow menunjukkan future passive: will be finished."},
+                            {q: "The window ___ by someone. (break)", options: ["is broken", "was broken", "has been broken", "broke"], correct: 1, explanation: "Simple past passive: was broken."},
+                            {q: "This book ___ by millions of people. (read)", options: ["is read", "was read", "has been read", "had been read"], correct: 2, explanation: "Present perfect passive untuk aksi yang terjadi sampai sekarang: has been read."},
+                            {q: "The meeting ___ right now. (hold)", options: ["is being held", "was being held", "has been held", "will be held"], correct: 0, explanation: "Right now menunjukkan present continuous passive: is being held."},
+                            {q: "The problem ___ before I arrived. (solve)", options: ["is solved", "was solved", "had been solved", "has been solved"], correct: 2, explanation: "Sebelum arrived (past) menggunakan past perfect passive: had been solved."},
+                            {q: "Coffee ___ in Brazil. (grow)", options: ["is grown", "was grown", "has grown", "grows"], correct: 0, explanation: "Fakta umum menggunakan simple present passive: is grown."},
+                            {q: "The movie ___ when we got there. (watch)", options: ["is watched", "was being watched", "has been watched", "watched"], correct: 1, explanation: "When we got there menunjukkan past continuous passive: was being watched."},
+                            {q: "The letter ___ to Mr. Smith. (send)", options: ["is sent", "was sent", "has sent", "sent"], correct: 1, explanation: "Simple past passive: was sent."},
+                            {q: "Dinner ___ by my mother every day. (cook)", options: ["is cooked", "was cooked", "has been cooked", "cooked"], correct: 0, explanation: "Every day menunjukkan simple present passive: is cooked."},
+                            {q: "The house ___ next year. (build)", options: ["is built", "was built", "will be built", "has been built"], correct: 2, explanation: "Next year menunjukkan future passive: will be built."},
+                            {q: "I ___ to the party by John. (invite)", options: ["am invited", "was invited", "have been invited", "had been invited"], correct: 1, explanation: "Simple past passive: was invited."},
+                            {q: "The homework ___ by the students now. (do)", options: ["is done", "is being done", "has been done", "was done"], correct: 1, explanation: "Now menunjukkan present continuous passive: is being done."},
+                            {q: "The book ___ into many languages. (translate)", options: ["is translated", "was translated", "has been translated", "had been translated"], correct: 2, explanation: "Present perfect passive: has been translated."},
+                            {q: "The car ___ by a mechanic tomorrow. (repair)", options: ["is repaired", "was repaired", "will be repaired", "has repaired"], correct: 2, explanation: "Tomorrow menunjukkan future passive: will be repaired."},
+                            {q: "The news ___ on TV last night. (announce)", options: ["is announced", "was announced", "has been announced", "announced"], correct: 1, explanation: "Last night menunjukkan simple past passive: was announced."},
+                            {q: "The room ___ when I entered. (clean)", options: ["is cleaned", "was being cleaned", "has been cleaned", "had been cleaned"], correct: 1, explanation: "When I entered menunjukkan past continuous passive: was being cleaned."}
+                        ]
+                    },
+                    {
+                        id: "inter3",
+                        title: "Conditionals (If Clauses)",
+                        subtitle: "Kalimat Pengandaian Tipe 0, 1, 2, 3",
+                        content: `
+                            <div class="theory-box p-6 rounded-xl mb-6">
+                                <h3 class="text-2xl font-bold mb-4 text-purple-700">📚 Teori: Conditionals</h3>
+                                <p class="mb-4 text-gray-700">Conditional sentences digunakan untuk menyatakan situasi yang bergantung pada kondisi tertentu. Ada 4 tipe utama:</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+                                    <h4 class="text-xl font-bold text-blue-700 mb-3">Type 0: General Truth (Fakta Umum)</h4>
+                                    <p class="text-gray-700 mb-3"><strong>If + Simple Present, Simple Present</strong></p>
+                                    <p class="text-sm text-gray-600 mb-3">Digunakan untuk: kebenaran umum, hukum alam, kebiasaan</p>
+                                    <div class="bg-white p-4 rounded-xl">
+                                        <ul class="space-y-1 text-gray-700">
+                                            <li>• If you heat water to 100°C, it <strong>boils</strong>.</li>
+                                            <li>• If I <strong>eat</strong> too much, I <strong>get</strong> sick.</li>
+                                            <li>• Plants <strong>die</strong> if they <strong>don't get</strong> water.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500">
+                                    <h4 class="text-xl font-bold text-green-700 mb-3">Type 1: Real Possibility (Kemungkinan Nyata)</h4>
+                                    <p class="text-gray-700 mb-3"><strong>If + Simple Present, will/can/may + V1</strong></p>
+                                    <p class="text-sm text-gray-600 mb-3">Digunakan untuk: situasi nyata yang mungkin terjadi di masa depan</p>
+                                    <div class="bg-white p-4 rounded-xl">
+                                        <ul class="space-y-1 text-gray-700">
+                                            <li>• If it <strong>rains</strong> tomorrow, I <strong>will stay</strong> home.</li>
+                                            <li>• If you <strong>study</strong> hard, you <strong>will pass</strong> the exam.</li>
+                                            <li>• I <strong>can help</strong> you if I <strong>have</strong> time.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="bg-yellow-50 p-6 rounded-2xl border-l-4 border-yellow-500">
+                                    <h4 class="text-xl font-bold text-yellow-700 mb-3">Type 2: Unreal Present (Tidak Nyata Sekarang)</h4>
+                                    <p class="text-gray-700 mb-3"><strong>If + Simple Past, would/could/might + V1</strong></p>
+                                    <p class="text-sm text-gray-600 mb-3">Digunakan untuk: situasi tidak nyata/imajiner di masa sekarang atau masa depan</p>
+                                    <div class="bg-white p-4 rounded-xl">
+                                        <ul class="space-y-1 text-gray-700">
+                                            <li>• If I <strong>were</strong> rich, I <strong>would buy</strong> a house. (tapi saya tidak kaya)</li>
+                                            <li>• If she <strong>knew</strong> the answer, she <strong>would tell</strong> us. (tapi dia tidak tahu)</li>
+                                            <li>• I <strong>could travel</strong> the world if I <strong>had</strong> more money.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="mt-3 bg-yellow-100 p-3 rounded-lg text-sm">
+                                        <strong>Catatan:</strong> Gunakan "were" untuk semua subjek (I were, he were, she were)
+                                    </div>
+                                </div>
+
+                                <div class="bg-red-50 p-6 rounded-2xl border-l-4 border-red-500">
+                                    <h4 class="text-xl font-bold text-red-700 mb-3">Type 3: Unreal Past (Tidak Nyata Masa Lalu)</h4>
+                                    <p class="text-gray-700 mb-3"><strong>If + Past Perfect, would/could/might + have + V3</strong></p>
+                                    <p class="text-sm text-gray-600 mb-3">Digunakan untuk: penyesalan, situasi yang berbeda di masa lalu (sudah terlambat)</p>
+                                    <div class="bg-white p-4 rounded-xl">
+                                        <ul class="space-y-1 text-gray-700">
+                                            <li>• If I <strong>had studied</strong> harder, I <strong>would have passed</strong>. (tapi saya tidak belajar)</li>
+                                            <li>• If she <strong>had left</strong> earlier, she <strong>wouldn't have missed</strong> the train.</li>
+                                            <li>• I <strong>could have helped</strong> you if you <strong>had asked</strong> me.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tip-box p-6 mt-6">
+                                <h4 class="font-bold text-lg mb-3">💡 Mixed Conditionals:</h4>
+                                <div class="bg-white p-4 rounded-xl">
+                                    <p class="mb-2">Menggabungkan Type 2 dan Type 3:</p>
+                                    <p>• If I <strong>had taken</strong> that job (past), I <strong>would be</strong> rich now (present).</p>
+                                    <p>• If I <strong>were</strong> more careful (present), I <strong>wouldn't have had</strong> that accident (past).</p>
+                                </div>
+                            </div>
+                        `,
+                        questions: [
+                            {q: "If you ___ ice, it melts. (heat)", options: ["heat", "heated", "will heat", "would heat"], correct: 0, explanation: "Type 0 (fakta umum) menggunakan simple present: heat."},
+                            {q: "If it rains tomorrow, I ___ at home. (stay)", options: ["stay", "stayed", "will stay", "would stay"], correct: 2, explanation: "Type 1 (kemungkinan nyata) menggunakan will + V1: will stay."},
+                            {q: "If I ___ rich, I would buy a car. (be)", options: ["am", "was", "were", "be"], correct: 2, explanation: "Type 2 menggunakan were untuk semua subjek."},
+                            {q: "If she ___ harder, she would have passed. (study)", options: ["studies", "studied", "had studied", "has studied"], correct: 2, explanation: "Type 3 menggunakan past perfect: had studied."},
+                            {q: "If I had known, I ___ you. (tell)", options: ["tell", "told", "would tell", "would have told"], correct: 3, explanation: "Type 3 menggunakan would have + V3: would have told."},
+                            {q: "If you press this button, the alarm ___. (go off)", options: ["goes off", "went off", "will go off", "would go off"], correct: 0, explanation: "Type 0 menggunakan simple present: goes off."},
+                            {q: "I would travel the world if I ___ more money. (have)", options: ["have", "had", "will have", "would have"], correct: 1, explanation: "Type 2 menggunakan simple past: had."},
+                            {q: "If he ___ earlier, he wouldn't have been late. (leave)", options: ["leaves", "left", "had left", "has left"], correct: 2, explanation: "Type 3 menggunakan past perfect: had left."},
+                            {q: "If you eat too much, you ___ sick. (get)", options: ["get", "got", "will get", "would get"], correct: 0, explanation: "Type 0 menggunakan simple present: get."},
+                            {q: "If I ___ time tomorrow, I will call you. (have)", options: ["have", "had", "will have", "would have"], correct: 0, explanation: "Type 1 menggunakan simple present: have."},
+                            {q: "She would be happy if she ___ the news. (know)", options: ["knows", "knew", "had known", "has known"], correct: 1, explanation: "Type 2 menggunakan simple past: knew."},
+                            {q: "If they ___ harder, they would succeed.", options: ["work", "worked", "had worked", "have worked"], correct: 1, explanation: "Type 2 menggunakan simple past: worked."},
+                            {q: "I ___ help you if I had known.", options: ["will", "would", "would have", "had"], correct: 2, explanation: "Type 3 menggunakan would have + V3."},
+                            {q: "If water ___ to 0°C, it freezes. (cool)", options: ["cools", "cooled", "will cool", "is cooled"], correct: 0, explanation: "Type 0 menggunakan simple present: cools."},
+                            {q: "If I were you, I ___ that job. (take)", options: ["take", "took", "will take", "would take"], correct: 3, explanation: "Type 2 menggunakan would + V1: would take."},
+                            {q: "If she ___ the bus, she would have been on time.", options: ["catches", "caught", "had caught", "has caught"], correct: 2, explanation: "Type 3 menggunakan past perfect: had caught."},
+                            {q: "Plants die if they ___ water. (not/get)", options: ["don't get", "didn't get", "won't get", "wouldn't get"], correct: 0, explanation: "Type 0 menggunakan simple present negatif: don't get."},
+                            {q: "If he ___ me yesterday, I would have helped him.", options: ["asks", "asked", "had asked", "has asked"], correct: 2, explanation: "Type 3 menggunakan past perfect: had asked."},
+                            {q: "I could buy a house if I ___ enough money.", options: ["have", "had", "will have", "would have"], correct: 1, explanation: "Type 2 dengan could menggunakan simple past: had."},
+                            {q: "If you mix red and blue, you ___ purple. (get)", options: ["get", "got", "will get", "would get"], correct: 0, explanation: "Type 0 (fakta ilmiah) menggunakan simple present: get."}
+                        ]
+                    },
+                    {
+                        id: "inter4",
+                        title: "Reported Speech",
+                        subtitle: "Kalimat Tidak Langsung",
+                        content: `
+                            <div class="theory-box p-6 rounded-xl mb-6">
+                                <h3 class="text-2xl font-bold mb-4 text-purple-700">📚 Teori: Reported Speech</h3>
+                                <p class="mb-4 text-gray-700">Reported speech (indirect speech) digunakan untuk melaporkan apa yang dikatakan orang lain tanpa mengutip langsung. Terjadi perubahan tense, pronoun, dan keterangan waktu/tempat.</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+                                    <h4 class="text-xl font-bold text-blue-700 mb-3">Perubahan Tense (Backshift)</h4>
+                                    <div class="bg-white p-4 rounded-xl">
+                                        <table class="w-full text-sm">
+                                            <tr class="border-b">
+                                                <th class="text-left p-2">Direct Speech</th>
+                                                <th class="text-left p-2">Reported Speech</th>
+                                            </tr>
+                                            <tr class="border-b"><td class="p-2">Simple Present</td><td class="p-2">Simple Past</td></tr>
+                                            <tr class="border-b"><td class="p-2">Present Continuous</td><td class="p-2">Past Continuous</td></tr>
+                                            <tr class="border-b"><td class="p-2">Present Perfect</td><td class="p-2">Past Perfect</td></tr>
+                                            <tr class="border-b"><td class="p-2">Simple Past</td><td class="p-2">Past Perfect</td></tr>
+                                            <tr class="border-b"><td class="p-2">Past Continuous</td><td class="p-2">Past Perfect Continuous</td></tr>
+                                            <tr class="border-b"><td class="p-2">Will</td><td class="p-2">Would</td></tr>
+                                            <tr class="border-b"><td class="p-2">Can</td><td class="p-2">Could</td></tr>
+                                            <tr><td class="p-2">Must</td><td class="p-2">Had to</td></tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="bg-purple-50 p-6 rounded-2xl border-l-4 border-purple-500">
+                                    <h4 class="text-xl font-bold text-purple-700 mb-3">Perubahan Kata dan Waktu</h4>
+                                    <div class="grid md:grid-cols-2 gap-4">
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="font-bold text-purple-600 mb-2">Pronoun & Possessive</p>
+                                            <ul class="text-sm space-y-1 text-gray-700">
+                                                <li>• I → he/she</li>
+                                                <li>• my → his/her</li>
+                                                <li>• we → they</li>
+                                                <li>• this → that</li>
+                                                <li>• these → those</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="font-bold text-purple-600 mb-2">Time & Place</p>
+                                            <ul class="text-sm space-y-1 text-gray-700">
+                                                <li>• now → then</li>
+                                                <li>• today → that day</li>
+                                                <li>• yesterday → the day before</li>
+                                                <li>• tomorrow → the next day</li>
+                                                <li>• here → there</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500">
+                                    <h4 class="text-xl font-bold text-green-700 mb-3">Contoh Perubahan</h4>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="text-sm text-gray-500 mb-1">Direct: "I <strong>am</strong> happy," she said.</p>
+                                            <p class="font-semibold">Reported: She said (that) she <strong>was</strong> happy.</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="text-sm text-gray-500 mb-1">Direct: "I <strong>have finished</strong> my work," he said.</p>
+                                            <p class="font-semibold">Reported: He said (that) he <strong>had finished</strong> his work.</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="text-sm text-gray-500 mb-1">Direct: "I <strong>will call</strong> you tomorrow," she said.</p>
+                                            <p class="font-semibold">Reported: She said (that) she <strong>would call</strong> me the next day.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-orange-50 p-6 rounded-2xl border-l-4 border-orange-500">
+                                    <h4 class="text-xl font-bold text-orange-700 mb-3">Reporting Verbs</h4>
+                                    <div class="grid md:grid-cols-2 gap-4">
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="font-bold text-orange-600 mb-2">Tanpa Perubahan Objek</p>
+                                            <ul class="text-sm space-y-1 text-gray-700">
+                                                <li>• say → said (that)</li>
+                                                <li>• tell → told me (that)</li>
+                                                <li>• explain → explained (that)</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-white p-4 rounded-xl">
+                                            <p class="font-bold text-orange-600 mb-2">Dengan To + V1</p>
+                                            <ul class="text-sm space-y-1 text-gray-700">
+                                                <li>• "Open the door" → tell/ask/order sb to open</li>
+                                                <li>• "Don't go" → tell/warn/ask sb not to go</li>
+                                                <li>• "Can you help?" → ask sb to help</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tip-box p-6 mt-6">
+                                <h4 class="font-bold text-lg mb-3">💡 Pengecualian:</h4>
+                                <div class="bg-white p-4 rounded-xl">
+                                    <p>Jika reporting verb (said/told) dalam present tense, <strong>tidak ada perubahan tense</strong>:</p>
+                                    <p class="mt-2 italic">She <strong>says</strong> she <strong>is</strong> tired. (bukan was)</p>
+                                </div>
+                            </div>
+                        `,
+                        questions: [
+                            {q: "Direct: 'I am tired,' he said. Reported: He said ___ tired.", options: ["he is", "he was", "I am", "I was"], correct: 1, explanation: "Present tense (am) berubah menjadi past tense (was) dalam reported speech."},
+                            {q: "Direct: 'I will help you,' she said. Reported: She said ___ help me.", options: ["she will", "she would", "I will", "I would"], correct: 1, explanation: "Will berubah menjadi would dalam reported speech."},
+                            {q: "Direct: 'I have finished,' he said. Reported: He said ___ finished.", options: ["he has", "he had", "I have", "I had"], correct: 1, explanation: "Present perfect berubah menjadi past perfect: had finished."},
+                            {q: "Direct: 'I can swim,' she said. Reported: She said ___ swim.", options: ["she can", "she could", "I can", "I could"], correct: 1, explanation: "Can berubah menjadi could dalam reported speech."},
+                            {q: "Direct: 'I saw him yesterday,' he said. Reported: He said ___ seen him ___.", options: ["he had/the day before", "he has/yesterday", "I had/the day before", "I have/yesterday"], correct: 0, explanation: "Simple past berubah menjadi past perfect, yesterday menjadi the day before."},
+                            {q: "Direct: 'Are you coming?' she asked. Reported: She asked if ___ coming.", options: ["she is", "she was", "I am", "I was"], correct: 3, explanation: "Present continuous berubah menjadi past continuous, pronoun I menjadi I (tetap karena yang ditanya adalah orang yang melaporkan)."},
+                            {q: "Direct: 'I was reading,' he said. Reported: He said ___ reading.", options: ["he was", "he had been", "I was", "I had been"], correct: 1, explanation: "Past continuous berubah menjadi past perfect continuous: had been reading."},
+                            {q: "Direct: 'I must go,' she said. Reported: She said ___ go.", options: ["she must", "she had to", "I must", "I had to"], correct: 1, explanation: "Must berubah menjadi had to dalam reported speech."},
+                            {q: "Direct: 'Close the door,' he said. Reported: He ___ close the door.", options: ["said me to", "told me to", "said to me", "told to me"], correct: 1, explanation: "Imperative menggunakan tell/ask + object + to + V1."},
+                            {q: "Direct: 'Don't touch it,' she said. Reported: She ___ touch it.", options: ["told me don't", "told me not to", "said me not to", "asked me don't"], correct: 1, explanation: "Negative imperative menggunakan tell + object + not to + V1."},
+                            {q: "Direct: 'I may leave early,' he said. Reported: He said ___ leave early.", options: ["he may", "he might", "I may", "I might"], correct: 1, explanation: "May berubah menjadi might dalam reported speech."},
+                            {q: "Direct: 'Where do you live?' she asked. Reported: She asked where ___.", options: ["do I live", "I live", "did I live", "I lived"], correct: 3, explanation: "Wh-question dalam reported speech menggunakan V2 (backshift) dan word order normal: I lived."},
+                            {q: "Direct: 'I bought this yesterday,' he said. Reported: He said ___ bought ___ the day before.", options: ["he had/that", "he has/this", "I had/this", "I have/that"], correct: 0, explanation: "Simple past berubah menjadi past perfect, this menjadi that."},
+                            {q: "Direct: 'I will be here tomorrow,' she said. Reported: She said she ___ be ___ the next day.", options: ["will/here", "would/there", "will/there", "would/here"], correct: 1, explanation: "Will menjadi would, here menjadi there, tomorrow menjadi the next day."},
+                            {q: "Direct: 'Do you like coffee?' he asked. Reported: He asked if ___ coffee.", options: ["do I like", "I like", "did I like", "I liked"], correct: 3, explanation: "Yes/no question menggunakan if/whether dengan backshift: I liked."},
+                            {q: "Direct: 'I was sleeping,' she said. Reported: She said ___ sleeping.", options: ["she was", "she had been", "I was", "I had been"], correct: 1, explanation: "Past continuous berubah menjadi past perfect continuous."},
+                            {q: "Direct: 'We are going,' they said. Reported: They said ___ going.", options: ["they are", "they were", "we are", "we were"], correct: 1, explanation: "Present continuous berubah menjadi past continuous: they were."},
+                            {q: "Direct: 'Help me,' she said. Reported: She ___ help her.", options: ["said me to", "told me to", "asked me to", "wanted me to"], correct: 2, explanation: "Request menggunakan ask + object + to + V1."},
+                            {q: "Direct: 'I don't know,' he said. Reported: He said ___ know.", options: ["he doesn't", "he didn't", "I don't", "I didn't"], correct: 1, explanation: "Present simple negatif berubah menjadi past simple negatif: didn't know."},
+                            {q: "Direct: 'I have been waiting,' she said. Reported: She said ___ been waiting.", options: ["she has", "she had", "I have", "I had"], correct: 1, explanation: "Present perfect continuous berubah menjadi past perfect continuous: had been waiting."}
+                        ]
+                    }
+                ]
+            },
+            advanced: {
+                title: "Level Lanjutan (C1-C2)",
+                materials: [
+                    {
+                        id: "adv1",
+                        title: "Subjunctive Mood",
+                        subtitle: "Penggunaan Subjunctive dalam Bahasa Inggris",
+                        content: `
+                            <div class="theory-box p-6 rounded-xl mb-6">
+                                <h3 class="text-2xl font-bold mb-4 text-purple-700">📚 Teori: Subjunctive Mood</h3>
+                                <p class="mb-4 text-gray-700">Subjunctive mood digunakan untuk menyatakan situasi yang bersifat hypothetical (bayangan), wish (keinginan), atau penting/necessary. Bentuknya berbeda dari tense biasa.</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+                                    <h4 class="text-xl font-bold text-blue-700 mb-3">1. Present Subjunctive (Bare Infinitive)</h4>
+                                    <p class="text-gray-700 mb-3">Digunakan setelah: suggest, recommend, demand, insist, propose, request, order, important, necessary, essential, etc.</p>
+                                    <p class="text-sm text-red-600 mb-3"><strong>Penting:</strong> Gunakan bare infinitive (V1) untuk semua subjek, termasuk he/she/it!</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl space-y-2">
+                                        <p>• I suggest that he <strong>go</strong> home early. (bukan goes)</p>
+                                        <p>• It is important that she <strong>be</strong> on time. (bukan is)</p>
+                                        <p>• They demanded that the report <strong>be submitted</strong> today.</p>
+                                        <p>• I recommend that he <strong>see</strong> a doctor.</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-purple-50 p-6 rounded-2xl border-l-4 border-purple-500">
+                                    <h4 class="text-xl font-bold text-purple-700 mb-3">2. Past Subjunctive (Were)</h4>
+                                    <p class="text-gray-700 mb-3">Digunakan untuk situasi tidak nyata/imajiner (sama seperti Type 2 Conditional).</p>
+                                    <p class="text-sm text-red-600 mb-3"><strong>Penting:</strong> Gunakan "were" untuk SEMUA subjek!</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl space-y-2">
+                                        <p>• If I <strong>were</strong> you, I would accept. (bukan was)</p>
+                                        <p>• I wish I <strong>were</strong> taller.</p>
+                                        <p>• If she <strong>were</strong> here, she would help.</p>
+                                        <p>• He acts as if he <strong>were</strong> the boss.</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500">
+                                    <h4 class="text-xl font-bold text-green-700 mb-3">3. Past Perfect Subjunctive</h4>
+                                    <p class="text-gray-700 mb-3">Digunakan untuk penyesalan di masa lalu (sama seperti Type 3 Conditional).</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl space-y-2">
+                                        <p>• I wish I <strong>had studied</strong> harder. (tapi saya tidak belajar)</p>
+                                        <p>• If only she <strong>had known</strong> the truth!</p>
+                                        <p>• He talks as if he <strong>had been</strong> there.</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-orange-50 p-6 rounded-2xl border-l-4 border-orange-500">
+                                    <h4 class="text-xl font-bold text-orange-700 mb-3">4. Would Rather / It's Time</h4>
+                                    <div class="bg-white p-4 rounded-xl space-y-3">
+                                        <div>
+                                            <p class="font-semibold text-orange-600">Would Rather (Prefer)</p>
+                                            <p>• Present: I'd rather you <strong>didn't smoke</strong> here. (V2)</p>
+                                            <p>• Past: I'd rather you <strong>hadn't told</strong> him. (had + V3)</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-orange-600">It's Time / It's High Time</p>
+                                            <p>• It's time we <strong>left</strong>. (V2 - sudah seharusnya)</p>
+                                            <p>• It's about time he <strong>apologized</strong>.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tip-box p-6 mt-6">
+                                <h4 class="font-bold text-lg mb-3">💡 Perbedaan:</h4>
+                                <div class="bg-white p-4 rounded-xl space-y-2">
+                                    <p><strong>Indicative (Fakta):</strong> I insist that he <strong>is</strong> wrong. (Saya yakin dia salah)</p>
+                                    <p><strong>Subjunctive (Saran):</strong> I insist that he <strong>apologize</strong>. (Saya minta dia minta maaf)</p>
+                                </div>
+                            </div>
+                        `,
+                        questions: [
+                            {q: "I suggest that he ___ early. (leave)", options: ["leaves", "left", "leave", "leaving"], correct: 2, explanation: "Setelah suggest, gunakan bare infinitive (subjunctive): leave."},
+                            {q: "If I ___ you, I would accept the offer. (be)", options: ["am", "was", "were", "be"], correct: 2, explanation: "Past subjunctive menggunakan were untuk semua subjek."},
+                            {q: "It is important that she ___ on time. (be)", options: ["is", "was", "be", "being"], correct: 2, explanation: "Setelah important, gunakan bare infinitive (subjunctive): be."},
+                            {q: "I wish I ___ harder for the exam. (study)", options: ["study", "studied", "had studied", "have studied"], correct: 2, explanation: "Wish untuk penyesalan masa lalu menggunakan past perfect: had studied."},
+                            {q: "They demanded that the report ___ immediately. (submit)", options: ["submits", "submitted", "be submitted", "is submitted"], correct: 2, explanation: "Setelah demand, gunakan subjunctive passive: be submitted."},
+                            {q: "I'd rather you ___ here. (not/smoke)", options: ["don't smoke", "didn't smoke", "not smoke", "not to smoke"], correct: 1, explanation: "Would rather untuk orang lain menggunakan simple past: didn't smoke."},
+                            {q: "It's time we ___ home. (go)", options: ["go", "went", "gone", "going"], correct: 1, explanation: "It's time menggunakan simple past (subjunctive): went."},
+                            {q: "He acts as if he ___ the boss. (be)", options: ["is", "was", "were", "be"], correct: 2, explanation: "As if untuk situasi tidak nyata menggunakan were."},
+                            {q: "I recommend that she ___ a doctor. (see)", options: ["sees", "saw", "see", "seeing"], correct: 2, explanation: "Setelah recommend, gunakan bare infinitive: see."},
+                            {q: "If only I ___ younger! (be)", options: ["am", "was", "were", "be"], correct: 2, explanation: "If only menggunakan were untuk keinginan tidak nyata."},
+                            {q: "It is essential that he ___ the truth. (tell)", options: ["tells", "told", "tell", "telling"], correct: 2, explanation: "Setelah essential, gunakan bare infinitive: tell."},
+                            {q: "I wish it ___ raining. (stop)", options: ["stops", "stopped", "would stop", "had stopped"], correct: 2, explanation: "Wish untuk situasi sekarang yang tidak mungkin: would stop."},
+                            {q: "They proposed that the meeting ___ postponed. (be)", options: ["is", "was", "be", "being"], correct: 2, explanation: "Setelah propose, gunakan subjunctive: be."},
+                            {q: "I'd rather you ___ him the truth yesterday. (not/tell)", options: ["don't tell", "didn't tell", "hadn't told", "not tell"], correct: 2, explanation: "Would rather untuk masa lalu menggunakan past perfect: hadn't told."},
+                            {q: "It is necessary that every applicant ___ a form. (complete)", options: ["completes", "completed", "complete", "completing"], correct: 2, explanation: "Setelah necessary, gunakan bare infinitive: complete."},
+                            {q: "She wishes she ___ more time. (have)", options: ["has", "had", "have", "would have"], correct: 1, explanation: "Wish untuk sekarang menggunakan simple past: had."},
+                            {q: "The teacher ordered that the students ___ quiet. (be)", options: ["are", "were", "be", "being"], correct: 2, explanation: "Setelah order, gunakan subjunctive: be."},
+                            {q: "He talks about Rome as though he ___ there before. (be)", options: ["is", "was", "were", "had been"], correct: 3, explanation: "As though untuk situasi masa lalu yang tidak nyata: had been."},
+                            {q: "I suggest that he ___ a vacation. (take)", options: ["takes", "took", "take", "taking"], correct: 2, explanation: "Setelah suggest, gunakan bare infinitive: take."},
+                            {q: "It's high time we ___ something about this problem. (do)", options: ["do", "did", "done", "doing"], correct: 1, explanation: "It's high time menggunakan simple past: did."}
+                        ]
+                    },
+                    {
+                        id: "adv2",
+                        title: "Inversion",
+                        subtitle: "Pembalikan Struktur Kalimat",
+                        content: `
+                            <div class="theory-box p-6 rounded-xl mb-6">
+                                <h3 class="text-2xl font-bold mb-4 text-purple-700">📚 Teori: Inversion</h3>
+                                <p class="mb-4 text-gray-700">Inversion adalah pembalikan posisi subject dan auxiliary verb (atau do/does/did) untuk memberikan penekanan atau dalam situasi formal/negatif tertentu.</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+                                    <h4 class="text-xl font-bold text-blue-700 mb-3">1. Negative Adverbials di Awal Kalimat</h4>
+                                    <p class="text-gray-700 mb-3">Ketika kalimat dimulai dengan kata negatif, subject dan auxiliary verb dibalik.</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl space-y-3">
+                                        <div>
+                                            <p class="font-semibold text-blue-600">Never, Rarely, Seldom, Hardly, Scarcely, Barely, No sooner</p>
+                                            <p>• <strong>Never</strong> have I seen such beauty. (bukan I have seen)</p>
+                                            <p>• <strong>Rarely</strong> does he complain. (bukan he complains)</p>
+                                            <p>• <strong>Hardly</strong> had I arrived when it started raining.</p>
+                                            <p>• <strong>No sooner</strong> had she finished than she started again.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-blue-600">Not only, Not until, Under no circumstances</p>
+                                            <p>• <strong>Not only</strong> did he win, but he also broke the record.</p>
+                                            <p>• <strong>Not until</strong> yesterday did I understand.</p>
+                                            <p>• <strong>Under no circumstances</strong> should you open this door.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-purple-50 p-6 rounded-2xl border-l-4 border-purple-500">
+                                    <h4 class="text-xl font-bold text-purple-700 mb-3">2. Inversion dalam Conditionals</h4>
+                                    <p class="text-gray-700 mb-3">Dalam conditional formal, if bisa dihilangkan dengan membalik subject dan were/had/should.</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl space-y-2">
+                                        <p>• <strong>Were</strong> I you, I would accept. (= If I were you...)</p>
+                                        <p>• <strong>Had</strong> I known, I would have helped. (= If I had known...)</p>
+                                        <p>• <strong>Should</strong> you need help, call me. (= If you should need...)</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500">
+                                    <h4 class="text-xl font-bold text-green-700 mb-3">3. Inversion setelah 'So', 'Such', 'Neither', 'Nor'</h4>
+                                    <div class="bg-white p-4 rounded-xl space-y-2">
+                                        <p>• She likes coffee, and <strong>so do I</strong>. (saya juga)</p>
+                                        <p>• He can't swim, and <strong>neither can I</strong>. (saya juga tidak)</p>
+                                        <p>• <strong>So beautiful</strong> was the sunset that we watched for hours.</p>
+                                        <p>• <strong>Such</strong> was the noise that I couldn't concentrate.</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-orange-50 p-6 rounded-2xl border-l-4 border-orange-500">
+                                    <h4 class="text-xl font-bold text-orange-700 mb-3">4. Inversion dalam Expressions of Place</h4>
+                                    <p class="text-gray-700 mb-3">Dalam deskripsi formal/literary, terutama dengan preposition of place di awal.</p>
+                                    <div class="bg-white p-4 rounded-xl space-y-2">
+                                        <p>• <strong>On the hill stood</strong> an old castle.</p>
+                                        <p>• <strong>At no time did</strong> she lose hope.</p>
+                                        <p>• <strong>Here comes</strong> the bus! (tapi: Here he comes - tidak dibalik karena pronoun)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tip-box p-6 mt-6">
+                                <h4 class="font-bold text-lg mb-3">💡 Struktur Inversion:</h4>
+                                <div class="bg-white p-4 rounded-xl">
+                                    <p class="mb-2"><strong>With Auxiliary:</strong> Negative Adverb + Auxiliary + Subject + Main Verb</p>
+                                    <p class="mb-2"><strong>Without Auxiliary (Simple Present/Past):</strong> Negative Adverb + Do/Does/Did + Subject + V1</p>
+                                    <p><strong>Exception:</strong> Here/There + verb + noun (Here comes the bus), tapi Here/There + pronoun + verb (Here he comes)</p>
+                                </div>
+                            </div>
+                        `,
+                        questions: [
+                            {q: "Never ___ such a beautiful sunset. (see/I)", options: ["I have seen", "have I seen", "I saw", "did I see"], correct: 1, explanation: "Never di awal kalimat membutuhkan inversion: have I seen."},
+                            {q: "Rarely ___ complaints about his work. (hear/we)", options: ["we hear", "do we hear", "we heard", "did we hear"], correct: 1, explanation: "Rarely di awal kalimat dengan simple present menggunakan do: do we hear."},
+                            {q: "Had I known, I ___ you. (help)", options: ["will help", "would help", "would have helped", "had helped"], correct: 2, explanation: "Inversion conditional type 3: Had I known = If I had known, maka hasilnya would have helped."},
+                            {q: "Not only ___ the exam, but he also got the highest score. (pass/he)", options: ["he passed", "did he pass", "he did pass", "passed he"], correct: 1, explanation: "Not only di awal kalimat menggunakan inversion dengan did: did he pass."},
+                            {q: "Were I you, I ___ that job. (accept)", options: ["accept", "will accept", "would accept", "would have accepted"], correct: 2, explanation: "Inversion conditional type 2: Were I you = If I were you, maka hasilnya would accept."},
+                            {q: "Seldom ___ late for work. (be/she)", options: ["she is", "is she", "she was", "was she"], correct: 1, explanation: "Seldom di awal kalimat menggunakan inversion: is she."},
+                            {q: "Should you need help, ___ me. (call)", options: ["call", "you call", "you will call", "calling"], correct: 0, explanation: "Inversion dengan should: Should you need = If you should need, hasilnya call (imperative)."},
+                            {q: "Hardly ___ the house when it started raining. (reach/we)", options: ["we reached", "did we reach", "we had reached", "had we reached"], correct: 3, explanation: "Hardly...when menggunakan past perfect dengan inversion: had we reached."},
+                            {q: "So beautiful ___ that we took many photos. (be/the place)", options: ["the place was", "was the place", "the place is", "is the place"], correct: 1, explanation: "So + adjective di awal kalimat menggunakan inversion: was the place."},
+                            {q: "Under no circumstances ___ this door. (open/you)", options: ["you open", "you should open", "should you open", "you must open"], correct: 2, explanation: "Under no circumstances menggunakan inversion dengan should: should you open."},
+                            {q: "No sooner ___ than she started crying. (arrive/I)", options: ["I arrived", "did I arrive", "I had arrived", "had I arrived"], correct: 3, explanation: "No sooner...than menggunakan past perfect dengan inversion: had I arrived."},
+                            {q: "He likes jazz, and so ___ his brother. (like)", options: ["likes", "is", "does", "did"], correct: 2, explanation: "So + auxiliary + subject untuk 'juga': so does."},
+                            {q: "Not until yesterday ___ the truth. (know/I)", options: ["I know", "did I know", "I knew", "do I know"], correct: 1, explanation: "Not until di awal kalimat menggunakan inversion dengan did: did I know."},
+                            {q: "Were she to arrive early, ___ us. (she/call)", options: ["she calls", "she will call", "she would call", "she would have called"], correct: 2, explanation: "Inversion conditional type 2 dengan were to: Were she to arrive = If she were to arrive, hasilnya would call."},
+                            {q: "Scarcely ___ the room when the phone rang. (enter/he)", options: ["he entered", "did he enter", "he had entered", "had he entered"], correct: 3, explanation: "Scarcely...when menggunakan past perfect dengan inversion: had he entered."},
+                            {q: "On the hill ___ an ancient castle. (stand)", options: ["stands", "does stand", "standing", "stood"], correct: 0, explanation: "Preposition of place di awal kalimat literary menggunakan inversion: stands."},
+                            {q: "Little ___ about the danger. (know/they)", options: ["they know", "do they know", "they knew", "did they know"], correct: 3, explanation: "Little di awal kalimat negatif menggunakan inversion dengan did: did they know."},
+                            {q: "Neither ___ nor my sister likes spicy food. (like/I)", options: ["I like", "do I like", "I liked", "did I like"], correct: 1, explanation: "Neither di awal kalimat menggunakan inversion: do I like."},
+                            {q: "Only after I left ___ my mistake. (realize/I)", options: ["I realized", "did I realize", "I had realized", "had I realized"], correct: 1, explanation: "Only after di awal kalimat menggunakan inversion dengan did: did I realize."},
+                            {q: "Such ___ the confusion that no one knew what to do. (be)", options: ["is", "was", "being", "were"], correct: 1, explanation: "Such di awal kalimat menggunakan inversion: was."}
+                        ]
+                    },
+                    {
+                        id: "adv3",
+                        title: "Cleft Sentences",
+                        subtitle: "Kalimat Penekanan dengan It dan What",
+                        content: `
+                            <div class="theory-box p-6 rounded-xl mb-6">
+                                <h3 class="text-2xl font-bold mb-4 text-purple-700">📚 Teori: Cleft Sentences</h3>
+                                <p class="mb-4 text-gray-700">Cleft sentences digunakan untuk memberikan penekanan (emphasis) pada bagian kalimat tertentu. Ada dua jenis utama: IT-clefts dan WH-clefts (pseudo-clefts).</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+                                    <h4 class="text-xl font-bold text-blue-700 mb-3">1. IT-Clefts</h4>
+                                    <p class="text-gray-700 mb-3"><strong>Struktur:</strong> It + be + emphasized part + that/who + rest of sentence</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl space-y-3">
+                                        <div>
+                                            <p class="font-semibold text-blue-600">Menekankan Subject:</p>
+                                            <p>• Normal: <u>John</u> bought a car yesterday.</p>
+                                            <p>• Cleft: It was <strong>John</strong> who/that bought a car yesterday.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-blue-600">Menekankan Object:</p>
+                                            <p>• Normal: John bought <u>a car</u> yesterday.</p>
+                                            <p>• Cleft: It was <strong>a car</strong> that John bought yesterday.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-blue-600">Menekankan Adverbial:</p>
+                                            <p>• Normal: John bought a car <u>yesterday</u>.</p>
+                                            <p>• Cleft: It was <strong>yesterday</strong> that John bought a car.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-3 bg-yellow-100 p-3 rounded-lg text-sm">
+                                        <strong>Catatan:</strong> Gunakan "who" untuk orang, "that" untuk benda atau bisa juga untuk orang.
+                                    </div>
+                                </div>
+
+                                <div class="bg-purple-50 p-6 rounded-2xl border-l-4 border-purple-500">
+                                    <h4 class="text-xl font-bold text-purple-700 mb-3">2. WH-Clefts (Pseudo-clefts)</h4>
+                                    <p class="text-gray-700 mb-3"><strong>Struktur:</strong> What/All + clause + be + emphasized part</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl space-y-3">
+                                        <div>
+                                            <p class="font-semibold text-purple-600">What-Clause:</p>
+                                            <p>• Normal: I need <u>your help</u>.</p>
+                                            <p>• Cleft: <strong>What I need</strong> is your help.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-purple-600">All-Clause:</p>
+                                            <p>• Normal: I want <u>to be happy</u>.</p>
+                                            <p>• Cleft: <strong>All I want</strong> is to be happy.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-purple-600">The thing that/What:</p>
+                                            <p>• <strong>The thing that</strong> impressed me most was her confidence.</p>
+                                            <p>• <strong>What</strong> surprised me was his reaction.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500">
+                                    <h4 class="text-xl font-bold text-green-700 mb-3">3. Reversed WH-Clefts</h4>
+                                    <p class="text-gray-700 mb-3">Membalik struktur WH-cleft untuk penekanan berbeda:</p>
+                                    <div class="bg-white p-4 rounded-xl space-y-2">
+                                        <p>• Normal WH-cleft: What I like is <strong>his attitude</strong>.</p>
+                                        <p>• Reversed: <strong>His attitude</strong> is what I like.</p>
+                                        <p>• What we need is <strong>more time</strong>.</p>
+                                        <p>• <strong>More time</strong> is what we need.</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-orange-50 p-6 rounded-2xl border-l-4 border-orange-500">
+                                    <h4 class="text-xl font-bold text-orange-700 mb-3">4. Negative Clefts</h4>
+                                    <p class="text-gray-700 mb-3">Untuk menekankan negasi:</p>
+                                    <div class="bg-white p-4 rounded-xl space-y-2">
+                                        <p>• It wasn't <strong>John</strong> who broke the window.</p>
+                                        <p>• It wasn't <strong>until yesterday</strong> that I understood.</p>
+                                        <p>• What I don't like is <strong>the noise</strong>.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tip-box p-6 mt-6">
+                                <h4 class="font-bold text-lg mb-3">💡 Perbedaan Emphasis:</h4>
+                                <div class="bg-white p-4 rounded-xl space-y-2">
+                                    <p><strong>It-cleft:</strong> Fokus pada satu elemen spesifik (It was JOHN who...)</p>
+                                    <p><strong>Wh-cleft:</strong> Fokus pada definisi/kategori (What I need IS...)</p>
+                                    <p><strong>All-cleft:</strong> Menyatakan satu-satunya hal yang penting (All I want IS...)</p>
+                                </div>
+                            </div>
+                        `,
+                        questions: [
+                            {q: "___ bought the car was John.", options: ["It", "What", "Who", "That"], correct: 1, explanation: "Wh-cleft untuk menekankan subject: What bought the car (meski lebih natural: The one who bought... atau It was John who...)."},
+                            {q: "It was ___ who broke the window.", options: ["him", "he", "his", "himself"], correct: 1, explanation: "It-cleft menggunakan subject pronoun setelah be: he."},
+                            {q: "___ I need is more time.", options: ["That", "Which", "What", "Who"], correct: 2, explanation: "Wh-cleft menggunakan what: What I need is..."},
+                            {q: "It was in Paris ___ we first met.", options: ["where", "that", "which", "when"], correct: 1, explanation: "It-cleft untuk tempat menggunakan that (bukan where): It was in Paris that..."},
+                            {q: "___ I want is to be happy.", options: ["All", "What", "That", "Which"], correct: 0, explanation: "All-cleft untuk menekankan satu-satunya keinginan: All I want is..."},
+                            {q: "It was yesterday ___ she called me.", options: ["when", "that", "which", "where"], correct: 1, explanation: "It-cleft untuk waktu menggunakan that: It was yesterday that..."},
+                            {q: "___ surprised me was his reaction.", options: ["That", "Which", "What", "Who"], correct: 2, explanation: "Wh-cleft untuk menekankan hal yang mengejutkan: What surprised me..."},
+                            {q: "It wasn't until 2020 ___ I graduated.", options: ["when", "that", "which", "where"], correct: 1, explanation: "Negative it-cleft menggunakan that: It wasn't until 2020 that..."},
+                            {q: "The person ___ stole my bag was wearing a red jacket.", options: ["which", "that", "who", "whom"], correct: 2, explanation: "Relative clause dalam cleft sentence untuk orang menggunakan who."},
+                            {q: "___ she needs is a good rest.", options: ["That", "What", "Which", "All"], correct: 1, explanation: "Wh-cleft: What she needs is..."},
+                            {q: "It was ___ who helped me with the project.", options: ["her", "she", "herself", "hers"], correct: 1, explanation: "Subject pronoun setelah it was: she."},
+                            {q: "___ impressed me most was her confidence.", options: ["That", "What", "Which", "Who"], correct: 1, explanation: "Wh-cleft: What impressed me most..."},
+                            {q: "It was a book ___ I bought, not a magazine.", options: ["which", "that", "what", "who"], correct: 1, explanation: "It-cleft untuk object menggunakan that."},
+                            {q: "All ___ I know is that he left early.", options: ["that", "which", "what", "who"], correct: 0, explanation: "All that I know adalah ungkapan tetap (all that)."},
+                            {q: "It was because of the rain ___ we cancelled the picnic.", options: ["why", "that", "which", "when"], correct: 1, explanation: "It-cleft untuk alasan menggunakan that."},
+                            {q: "___ I don't understand is why he left.", options: ["That", "What", "Which", "Who"], correct: 1, explanation: "Wh-cleft negatif: What I don't understand..."},
+                            {q: "It was my brother ___ taught me to drive.", options: ["which", "that", "who", "whom"], correct: 2, explanation: "It-cleft untuk orang bisa menggunakan who atau that."},
+                            {q: "___ we need now is your support.", options: ["That", "What", "Which", "All"], correct: 3, explanation: "All-cleft: All we need now is..."},
+                            {q: "It wasn't the manager ___ made the decision.", options: ["which", "that", "who", "whom"], correct: 1, explanation: "Negative it-cleft menggunakan that."},
+                            {q: "The thing ___ worries me is the cost.", options: ["which", "that", "what", "who"], correct: 1, explanation: "The thing that adalah variasi wh-cleft."}
+                        ]
+                    },
+                    {
+                        id: "adv4",
+                        title: "Emphasis and Fronting",
+                        subtitle: "Tekanan dan Penempatan di Awal Kalimat",
+                        content: `
+                            <div class="theory-box p-6 rounded-xl mb-6">
+                                <h3 class="text-2xl font-bold mb-4 text-purple-700">📚 Teori: Emphasis and Fronting</h3>
+                                <p class="mb-4 text-gray-700">Selain cleft sentences, ada berbagai cara untuk memberikan penekanan dalam bahasa Inggris, termasuk penggunaan auxiliary verbs, fronting, dan particular emphasizing structures.</p>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500">
+                                    <h4 class="text-xl font-bold text-blue-700 mb-3">1. Emphatic Do/Does/Did</h4>
+                                    <p class="text-gray-700 mb-3">Digunakan untuk memberikan penekanan pada simple present atau past, atau untuk mengkontrasikan.</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl space-y-2">
+                                        <p>• I <strong>do like</strong> coffee! (penekanan positif)</p>
+                                        <p>• She <strong>does work</strong> hard. (penegasan)</p>
+                                        <p>• I <strong>did tell</strong> you! (penekanan masa lalu)</p>
+                                        <p>• He said he wouldn't come, but he <strong>did come</strong>. (kontras)</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-purple-50 p-6 rounded-2xl border-l-4 border-purple-500">
+                                    <h4 class="text-xl font-bold text-purple-700 mb-3">2. Fronting (Penempatan di Awal)</h4>
+                                    <p class="text-gray-700 mb-3">Memindahkan elemen kalimat ke posisi awal untuk penekanan.</p>
+                                    
+                                    <div class="bg-white p-4 rounded-xl space-y-3">
+                                        <div>
+                                            <p class="font-semibold text-purple-600">Object Fronting:</p>
+                                            <p>• Normal: I have never seen <u>such beauty</u>.</p>
+                                            <p>• Fronted: <strong>Such beauty</strong> I have never seen!</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-purple-600">Adverbial Fronting:</p>
+                                            <p>• Normal: He walked <u>slowly</u> into the room.</p>
+                                            <p>• Fronted: <strong>Slowly</strong>, he walked into the room.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-purple-600">Complement Fronting:</p>
+                                            <p>• Normal: He is <u>a genius</u>.</p>
+                                            <p>• Fronted: <strong>A genius</strong> he is, but humble he is not.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-green-50 p-6 rounded-2xl border-l-4 border-green-500">
+                                    <h4 class="text-xl font-bold text-green-700 mb-3">3. The..., the... (Correlative Comparative)</h4>
+                                    <p class="text-gray-700 mb-3">Untuk menunjukkan hubungan sebab-akibat:</p>
+                                    <div class="bg-white p-4 rounded-xl space-y-2">
+                                        <p>• <strong>The more</strong> you practice, <strong>the better</strong> you get.</p>
+                                        <p>• <strong>The sooner</strong>, <strong>the better</strong>.</p>
+                                        <p>• <strong>The harder</strong> you work, <strong>the more</strong> you earn.</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-orange-50 p-6 rounded-2xl border-l-4 border-orange-500">
+                                    <h4 class="text-xl font-bold text-orange-700 mb-3">4. Other Emphasizing Structures</h4>
+                                    <div class="bg-white p-4 rounded-xl space-y-3">
+                                        <div>
+                                            <p class="font-semibold text-orange-600">On earth / In the world (setelah wh-question):</p>
+                                            <p>• What <strong>on earth</strong> are you doing?</p>
+                                            <p>• Who <strong>in the world</strong> told you that?</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-orange-600">At all (untuk penekanan negatif):</p>
+                                            <p>• I don't like it <strong>at all</strong>. (sama sekali tidak)</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-orange-600">Own (untuk penekanan kepemilikan):</p>
+                                            <p>• I want to have my <strong>own</strong> car.</p>
+                                            <p>• She makes her <strong>own</strong> clothes.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-orange-600">Very (sebagai adjective untuk penekanan):</p>
+                                            <p>• That's the <strong>very</strong> thing I need!</p>
+                                            <p>• At that <strong>very</strong> moment, the phone rang.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tip-box p-6 mt-6">
+                                <h4 class="font-bold text-lg mb-3">💡 Perbedaan Penggunaan:</h4>
+                                <div class="bg-white p-4 rounded-xl space-y-2">
+                                    <p><strong>Do-emphasis:</strong> Untuk kontras atau penegasan dalam percakapan</p>
+                                    <p><strong>Fronting:</strong> Untuk efek stylistic/literary</p>
+                                    <p><strong>The...the...:</strong> Untuk hubungan proporsional</p>
+                                    <p><strong>On earth:</strong> Untuk pertanyaan yang menunjukkan keterkejutan/kesal</p>
+                                </div>
+                            </div>
+                        `,
+                        questions: [
+                            {q: "I ___ like chocolate! (penekanan)", options: ["like", "do like", "does like", "did like"], correct: 1, explanation: "Do + V1 untuk penekanan simple present: do like."},
+                            {q: "___ you practice, ___ you become.", options: ["More/better", "The more/the better", "More/the better", "The more/better"], correct: 1, explanation: "The...the... structure: The more you practice, the better you become."},
+                            {q: "What ___ are you doing here?", options: ["on earth", "in world", "at all", "very"], correct: 0, explanation: "What on earth untuk pertanyaan dengan keterkejutan."},
+                            {q: "He said he wouldn't come, but he ___ come!", options: ["do", "does", "did", "done"], correct: 2, explanation: "Did untuk penekanan kontras di masa lalu: did come."},
+                            {q: "I don't understand ___!", options: ["on earth", "at all", "very", "own"], correct: 1, explanation: "At all untuk penekanan negatif: don't understand at all."},
+                            {q: "___ beauty I have never seen!", options: ["Such", "So", "Very", "Too"], correct: 0, explanation: "Fronting dengan such: Such beauty I have never seen!"},
+                            {q: "She wants to have her ___ car.", options: ["own", "very", "at all", "on earth"], correct: 0, explanation: "Own untuk penekanan kepemilikan: her own car."},
+                            {q: "___ harder you work, ___ more you earn.", options: ["More/more", "The harder/the more", "Harder/more", "The hard/the much"], correct: 1, explanation: "The...the... structure dengan comparative: The harder...the more."},
+                            {q: "I ___ told you this would happen!", options: ["do", "does", "did", "done"], correct: 2, explanation: "Did untuk penekanan masa lalu: did tell."},
+                            {q: "Who ___ told you that secret?", options: ["on earth", "in the world", "at all", "very"], correct: 1, explanation: "Who in the world untuk pertanyaan dengan keterkejutan."},
+                            {q: "That's the ___ book I was looking for!", options: ["own", "very", "at all", "such"], correct: 1, explanation: "Very sebagai adjective untuk penekanan: the very book."},
+                            {q: "She ___ speaks English well.", options: ["do", "does", "did", "done"], correct: 1, explanation: "Does untuk penekanan simple present: does speak."},
+                            {q: "___ slowly, he walked into the room.", options: ["Such", "So", "Very", "Too"], correct: 1, explanation: "Fronting adverbial dengan so: So slowly..."},
+                            {q: "I don't like spicy food ___!", options: ["on earth", "at all", "very", "own"], correct: 1, explanation: "Not...at all untuk penekanan negatif."},
+                            {q: "He makes his ___ furniture.", options: ["own", "very", "at all", "such"], correct: 0, explanation: "His own untuk penekanan: membuat sendiri."},
+                            {q: "___ sooner, ___ better.", options: ["The/the", "More/more", "So/so", "Very/very"], correct: 0, explanation: "Idiom: The sooner, the better."},
+                            {q: "I have ___ seen such behavior!", options: ["on earth", "at all", "never", "very"], correct: 2, explanation: "Never untuk penekanan negatif: have never seen."},
+                            {q: "___ a genius he is!", options: ["Such", "So", "Very", "Too"], correct: 0, explanation: "Fronting dengan such untuk noun phrase: Such a genius he is!"},
+                            {q: "They ___ finished the project on time.", options: ["do", "does", "did", "done"], correct: 2, explanation: "Did untuk penekasan bahwa mereka benar-benar menyelesaikan."},
+                            {q: "What ___ do you want from me?", options: ["on earth", "at all", "very", "own"], correct: 0, explanation: "What on earth untuk pertanyaan dengan frustrasi/keterkejutan."}
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // State Management
+        let currentLevel = null;
+        let currentMaterial = null;
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answered = false;
+        let completedMaterials = {
+            basic: [],
+            intermediate: [],
+            advanced: []
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStats();
+        });
+
+        function showSlide(slideId) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(slideId).classList.add('active');
+            
+            // Update progress bar
+            const slides = ['menuSlide', 'subMenuSlide', 'materialSlide', 'quizSlide', 'resultSlide'];
+            const currentIndex = slides.indexOf(slideId);
+            const progress = ((currentIndex + 1) / slides.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function goToMenu() {
+            showSlide('menuSlide');
+            updateStats();
+        }
+
+        function startLevel(level) {
+            currentLevel = level;
+            const levelData = grammarData[level];
+            document.getElementById('levelTitle').textContent = levelData.title;
+            
+            const grid = document.getElementById('materialsGrid');
+            grid.innerHTML = '';
+            
+            levelData.materials.forEach((material, index) => {
+                const isCompleted = completedMaterials[level].includes(material.id);
+                const card = document.createElement('div');
+                card.className = `menu-card bg-white rounded-2xl p-6 shadow-lg border-2 ${isCompleted ? 'border-green-400' : 'border-purple-100'} cursor-pointer relative`;
+                card.onclick = () => openMaterial(index);
+                
+                card.innerHTML = `
+                    ${isCompleted ? '<div class="absolute top-4 right-4 completed-badge text-white px-3 py-1 rounded-full text-xs font-bold">✓ SELESAI</div>' : ''}
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl flex items-center justify-center text-white font-bold text-xl mb-4">
+                        ${index + 1}
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">${material.title}</h3>
+                    <p class="text-gray-600 text-sm mb-4">${material.subtitle}</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-gray-500">20 Soal Latihan</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold">
+                            ${isCompleted ? 'Ulangi' : 'Mulai Belajar'} →
+                        </span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            
+            showSlide('subMenuSlide');
+        }
+
+        function backToSubMenu() {
+            showSlide('subMenuSlide');
+        }
+
+        function openMaterial(index) {
+            currentMaterial = grammarData[currentLevel].materials[index];
+            document.getElementById('materialLevel').textContent = grammarData[currentLevel].title;
+            document.getElementById('materialTitle').textContent = currentMaterial.title;
+            document.getElementById('materialSubtitle').textContent = currentMaterial.subtitle;
+            document.getElementById('materialContent').innerHTML = currentMaterial.content;
+            showSlide('materialSlide');
+        }
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            answered = false;
+            document.getElementById('scoreDisplay').textContent = '0';
+            showQuestion();
+            showSlide('quizSlide');
+        }
+
+        function showQuestion() {
+            const question = currentMaterial.questions[currentQuestionIndex];
+            document.getElementById('questionNumber').textContent = currentQuestionIndex + 1;
+            document.getElementById('currentQuestionNum').textContent = currentQuestionIndex + 1;
+            document.getElementById('questionText').innerHTML = question.q;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            const labels = ['A', 'B', 'C', 'D'];
+            question.options.forEach((option, index) => {
+                const optionCard = document.createElement('div');
+                optionCard.className = 'option-card bg-white border-2 border-gray-200 rounded-xl p-4 flex items-center gap-4 cursor-pointer';
+                optionCard.onclick = () => selectOption(index, optionCard);
+                optionCard.innerHTML = `
+                    <div class="option-label">${labels[index]}</div>
+                    <div class="flex-1 text-lg font-medium text-gray-700">${option}</div>
+                `;
+                optionsContainer.appendChild(optionCard);
+            });
+            
+            document.getElementById('feedbackSection').classList.add('hidden');
+            document.getElementById('quizProgress').style.width = ((currentQuestionIndex + 1) / 20) * 100 + '%';
+            answered = false;
+        }
+
+        function selectOption(index, element) {
+            if (answered) return;
+            answered = true;
+            
+            const question = currentMaterial.questions[currentQuestionIndex];
+            const isCorrect = index === question.correct;
+            
+            // Mark selected option
+            document.querySelectorAll('.option-card').forEach((card, i) => {
+                card.classList.remove('selected');
+                card.style.pointerEvents = 'none';
+                if (i === question.correct) {
+                    card.classList.add('correct');
+                } else if (i === index && !isCorrect) {
+                    card.classList.add('wrong');
+                }
+            });
+            
+            if (isCorrect) {
+                score++;
+                document.getElementById('scoreDisplay').textContent = score;
+                document.getElementById('feedbackIcon').textContent = '🎉';
+                document.getElementById('feedbackTitle').textContent = 'Benar!';
+                document.getElementById('feedbackTitle').className = 'font-bold text-lg mb-2 text-green-600';
+            } else {
+                document.getElementById('feedbackIcon').textContent = '❌';
+                document.getElementById('feedbackTitle').textContent = 'Salah';
+                document.getElementById('feedbackTitle').className = 'font-bold text-lg mb-2 text-red-600';
+            }
+            
+            document.getElementById('feedbackText').textContent = `Jawaban yang benar: ${question.options[question.correct]}`;
+            document.getElementById('explanationText').textContent = question.explanation;
+            document.getElementById('feedbackSection').classList.remove('hidden');
+            
+            // Scroll to feedback
+            document.getElementById('feedbackSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < 20) {
+                showQuestion();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('finalScore').textContent = score;
+            const percentage = (score / 20) * 100;
+            let message = '';
+            if (percentage >= 90) {
+                message = '🌟 Luar biasa! Penguasaan sempurna!';
+                triggerConfetti();
+            } else if (percentage >= 70) {
+                message = '👍 Bagus! Tingkatkan lagi!';
+                triggerConfetti();
+            } else if (percentage >= 50) {
+                message = '💪 Cukup baik, perlu latihan lagi!';
+            } else {
+                message = '📚 Perlu belajar lebih giat lagi!';
+            }
+            document.getElementById('resultMessage').textContent = message;
+            showSlide('resultSlide');
+        }
+
+        function triggerConfetti() {
+            const duration = 3000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#667eea', '#764ba2', '#f093fb']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#667eea', '#764ba2', '#f093fb']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        function retryQuiz() {
+            startQuiz();
+        }
+
+        function completeMaterial() {
+            if (!completedMaterials[currentLevel].includes(currentMaterial.id)) {
+                completedMaterials[currentLevel].push(currentMaterial.id);
+            }
+            backToSubMenu();
+        }
+
+        function updateStats() {
+            document.getElementById('completedBasic').textContent = `${completedMaterials.basic.length}/4`;
+            document.getElementById('completedInter').textContent = `${completedMaterials.intermediate.length}/4`;
+            document.getElementById('completedAdv').textContent = `${completedMaterials.advanced.length}/4`;
+        }
+    </script>
+</body>
+</html>
